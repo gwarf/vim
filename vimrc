@@ -20,6 +20,22 @@ Bundle 'gmarik/vundle'
 " local machine
 " Bundle 'file:///home/baptiste/path/to/plugin'
 
+ " Brief help
+ " :BundleList          - list configured bundles
+ " :BundleInstall(!)    - install(update) bundles
+ " :BundleSearch(!) foo - search(or refresh cache first) for foo
+ " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+ "
+ " see :h vundle for more details or wiki for FAQ
+ " NOTE: comments after Bundle command are not allowed..
+
+" Install all bundles
+" vim +BundleInstall +qall
+
+" peaksea color plugin
+Bundle 'peaksea'
+colorscheme peaksea
+
 filetype plugin indent on " required
 syntax on
 
