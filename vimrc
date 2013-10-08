@@ -131,8 +131,15 @@ endif
 
 set pastetoggle=<F10>
 
-set backup  " Sauvegarde des fichiers modifiés
-set backupdir=$HOME/.backup
+" Backup configuration
+set backup  " Bacup modified files
+set backupdir=$HOME/.vim/backup
+set backupskip=/tmp/*,/private/tmp/*
+set writebackup
+
+" Swap file configuration
+set swapfile
+set directory=$HOME/.vim/swap
 
 set shell="zsh"
 if has("unix")
