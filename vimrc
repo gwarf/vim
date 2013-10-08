@@ -36,7 +36,9 @@ Bundle 'gmarik/vundle'
 Bundle 'peaksea'
 colorscheme peaksea
 
-Bundle 'Lokaltog/vim-powerline'
+" Bundle 'Lokaltog/vim-powerline'
+
+Bundle 'tmatilai/gitolite.vim'
 
 filetype plugin indent on " required
 syntax on
