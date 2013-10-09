@@ -33,8 +33,8 @@ Bundle 'gmarik/vundle'
 " vim +BundleInstall +qall
 
 " peaksea color plugin
-Bundle 'peaksea'
-colorscheme peaksea
+"Bundle 'peaksea'
+"colorscheme peaksea
 
 " Bundle 'Lokaltog/vim-powerline'
 
