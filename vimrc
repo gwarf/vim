@@ -137,6 +137,9 @@ endif
 set pastetoggle=<F10>
 
 " Backup configuration
+silent execute '!mkdir -p $HOME/.vimbackup'
+silent execute '!mkdir -p $HOME/.vimswap'
+silent execute '!mkdir -p $HOME/.vimviews'
 set backup  " Bacup modified files
 set backupdir=$HOME/.vim/backup
 set backupskip=/tmp/*,/private/tmp/*
