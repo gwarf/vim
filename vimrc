@@ -187,12 +187,15 @@ function! s:DisplayStatus(msg)
 endfunction
 
 if has("autocmd")
-  " Supprime les espaces en fin de ligne avant de sauver
+  " Delete spaces at EOL
   " FIXME need to disable this when writting mails
   " autocmd BufWrite * silent! %s/[\r \t]\+$//
   "Autoremove ^M in DOS files
   autocmd BufRead * silent! %s/$//
 endif
+
+" Press F5 to suppress white spaces at EOL
+:nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " TODO ensure that tab are not replaced on python files
 function! CleanCode()
