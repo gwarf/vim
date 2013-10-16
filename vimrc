@@ -41,6 +41,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'mv/mv-vim-puppet'
 Bundle 'godlygeek/tabular'
 Bundle 'scrooloose/syntastic'
+Bundle 'garbas/vim-snipmate'
 
 filetype plugin indent on " required
 syntax on
