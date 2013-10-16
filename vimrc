@@ -38,6 +38,7 @@ Bundle 'gmarik/vundle'
 
 Bundle 'tmatilai/gitolite.vim'
 Bundle 'tpope/vim-fugitive'
+Bundle 'mv/mv-vim-puppet'
 
 filetype plugin indent on " required
 syntax on
