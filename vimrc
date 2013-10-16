@@ -36,8 +36,6 @@ Bundle 'gmarik/vundle'
 "Bundle 'peaksea'
 "colorscheme peaksea
 
-" Bundle 'Lokaltog/vim-powerline'
-
 Bundle 'tmatilai/gitolite.vim'
 Bundle 'tpope/vim-fugitive'
 
