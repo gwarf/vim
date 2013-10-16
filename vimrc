@@ -41,6 +41,8 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'mv/mv-vim-puppet'
 Bundle 'godlygeek/tabular'
 Bundle 'scrooloose/syntastic'
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
 Bundle 'garbas/vim-snipmate'
 
 filetype plugin indent on " required
