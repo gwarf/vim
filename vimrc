@@ -147,7 +147,7 @@ silent execute '!mkdir -p $HOME/.vimbackup'
 silent execute '!mkdir -p $HOME/.vimswap'
 silent execute '!mkdir -p $HOME/.vimviews'
 set backup  " Bacup modified files
-set backupdir=$HOME/.vim/vimbackup
+set backupdir=$HOME/.vimbackup
 set backupskip=/tmp/*,/private/tmp/*
 set writebackup
 
