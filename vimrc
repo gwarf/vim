@@ -147,13 +147,13 @@ silent execute '!mkdir -p $HOME/.vimbackup'
 silent execute '!mkdir -p $HOME/.vimswap'
 silent execute '!mkdir -p $HOME/.vimviews'
 set backup  " Bacup modified files
-set backupdir=$HOME/.vim/backup
+set backupdir=$HOME/.vim/vimbackup
 set backupskip=/tmp/*,/private/tmp/*
 set writebackup
 
 " Swap file configuration
 set swapfile
-set directory=$HOME/.vim/swap
+set directory=$HOME/.vimswap
 
 set shell="zsh"
 if has("unix")
