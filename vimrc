@@ -4,6 +4,7 @@ set encoding=utf-8
 set nocompatible " be iMproved
 filetype off " required for vundle setup
 
+" requires vundle installed
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 " let Vundle manage Vundle
