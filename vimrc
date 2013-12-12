@@ -46,9 +46,17 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle 'garbas/vim-snipmate'
 Bundle "honza/vim-snippets"
+Bundle 'guyzmo/vim-yaposting'
+Bundle "guyzmo/notmuch-abook"
+Bundle "benmills/vimux"
+Bundle "elzr/vim-json"
+Bundle "altercation/vim-colors-solarized"
+"Bundle "Lokaltog/vim-powerline"
 
 filetype plugin indent on " required
 syntax on
+
+"let g:vim_json_syntax_conceal = 0
 
 " set mouse=a
 set mouse=
@@ -59,22 +67,26 @@ set noerrorbells
 " Ensure modelines are enabled
 set modeline
 
-colorscheme torte
+set background=dark
+"let g:solarized_termcolors=16
+"let g:solarized_termcolors=256
+let g:solarized_visibility = "high"
+
+colorscheme solarized
+"colorscheme torte
 " colorscheme zellner
 " colorscheme elflord
 " colorscheme desert
 " colorscheme transparent
-set background=dark
-" set background=light
 
 " Diff colors
-highlight DiffAdd term=reverse cterm=bold ctermbg=green ctermfg=black
-highlight DiffChange term=reverse cterm=bold ctermbg=cyan ctermfg=black
-highlight DiffText term=reverse cterm=bold ctermbg=gray ctermfg=black
-highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black
+"highlight DiffAdd term=reverse cterm=bold ctermbg=green ctermfg=black
+"highlight DiffChange term=reverse cterm=bold ctermbg=cyan ctermfg=black
+"highlight DiffText term=reverse cterm=bold ctermbg=gray ctermfg=black
+"highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black
 
 set number          " show line numbers
-highlight LineNr ctermbg=black ctermfg=gray
+"highlight LineNr ctermbg=black ctermfg=gray
 
 "set cursorline
 "highlight CursorLine term=reverse cterm=reverse
