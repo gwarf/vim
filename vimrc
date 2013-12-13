@@ -70,7 +70,7 @@ set modeline
 set background=dark
 "let g:solarized_termcolors=16
 "let g:solarized_termcolors=256
-let g:solarized_visibility = "high"
+"let g:solarized_visibility = "high"
 
 colorscheme solarized
 "colorscheme torte
@@ -88,16 +88,20 @@ colorscheme solarized
 set number          " show line numbers
 "highlight LineNr ctermbg=black ctermfg=gray
 
+" vim-powerline
+" https://github.com/Lokaltog/vim-powerline
+let g:Powerline_symbols = 'fancy'
+
 "set cursorline
 "highlight CursorLine term=reverse cterm=reverse
 "set statusline=%F%m%r%h%w\ [Line\ %04l]\ [Col\ %04v]\ [%p%%]\ [ASCII\ \%03.3b]\ [Type\ %Y/%{&ff}]\ [%{strftime(\"%H:%M:%S-%d/%m/%Y\")}]
-set statusline=%F%m%r%h%w\ [%l,%v:%p%%]\ [ascii\ \%03.3b]\ %y[%{&ff}]\ [%{strftime(\"%H:%M:%S-%d/%m/%Y\")}]
+"set statusline=%F%m%r%h%w\ [%l,%v:%p%%]\ [ascii\ \%03.3b]\ %y[%{&ff}]\ [%{strftime(\"%H:%M:%S-%d/%m/%Y\")}]
 set laststatus=2  " Affiche une barre de status en bas de l'écran
 set title       " show title in console title bar
-set showmode    " shows the current mode in statusline
+"set showmode    " shows the current mode in statusline
 "set shm=a      " use shortest messages
 set shortmess=t
-set showcmd     " Affiche les commandes dans la barre de status
+"set showcmd     " Affiche les commandes dans la barre de status
 
 set textwidth=72  " Largeur maxi du texte inséré
 map # {v}! par 72
