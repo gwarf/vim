@@ -518,10 +518,6 @@ endif
 let g:EclimBrowser = 'firefox'
 command -range -nargs=* Google call eclim#web#SearchEngine('http://www.google.fr/search?q=<query>', <q-args>, <line1>, <line2>)
 
-" vim-powerline
-" https://github.com/Lokaltog/vim-powerline
-" let g:Powerline_symbols = 'fancy'
-
 " Use Ctrl-Space for omnicompletion
 inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
 \ "\<lt>C-n>" :
