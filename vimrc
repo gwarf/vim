@@ -33,10 +33,6 @@ Bundle 'gmarik/vundle'
 " Install all bundles
 " vim +BundleInstall +qall
 
-" peaksea color plugin
-"Bundle 'peaksea'
-"colorscheme peaksea
-
 Bundle 'tmatilai/gitolite.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'mv/mv-vim-puppet'
@@ -51,7 +47,6 @@ Bundle "guyzmo/notmuch-abook"
 Bundle "benmills/vimux"
 Bundle "elzr/vim-json"
 Bundle "altercation/vim-colors-solarized"
-"Bundle "Lokaltog/vim-powerline"
 
 filetype plugin indent on " required
 syntax on
@@ -68,9 +63,6 @@ set noerrorbells
 set modeline
 
 set background=dark
-"let g:solarized_termcolors=16
-"let g:solarized_termcolors=256
-"let g:solarized_visibility = "high"
 
 colorscheme solarized
 "colorscheme torte
@@ -78,6 +70,11 @@ colorscheme solarized
 " colorscheme elflord
 " colorscheme desert
 " colorscheme transparent
+
+if &diff
+	colorscheme evening
+endif
+
 
 " Diff colors
 "highlight DiffAdd term=reverse cterm=bold ctermbg=green ctermfg=black
