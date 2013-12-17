@@ -47,6 +47,7 @@ Bundle "guyzmo/notmuch-abook"
 Bundle "benmills/vimux"
 Bundle "elzr/vim-json"
 Bundle "altercation/vim-colors-solarized"
+Bundle "jtratner/vim-flavored-markdown"
 
 filetype plugin indent on " required
 syntax on
@@ -72,7 +73,7 @@ colorscheme solarized
 " colorscheme transparent
 
 if &diff
-	colorscheme evening
+  colorscheme evening
 endif
 
 
@@ -182,6 +183,10 @@ if v:version >= 700
   autocmd BufNewFile,BufRead *.tex set spell spelllang=fr,en
   autocmd BufNewFile,BufRead *.sh set spell spelllang=en,fr
   autocmd BufEnter,BufNewFile,BufRead ~/tmp/mutt* set spell spelllang=en,fr
+  augroup markdown
+    au!
+    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+  augroup END
 
   map <F7> :set spell spelllang=fr<CR>
   map <S-F7> :set spell spelllang=en<CR>
@@ -528,10 +533,10 @@ nnoremap <Space> za
 
 " VisualSearch using * and #
 function! s:VSetSearch()
-	let temp = @@
-	norm! gvy
-	let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-	let @@ = temp
+  let temp = @@
+  norm! gvy
+  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+  let @@ = temp
 endfunction
 
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR>
