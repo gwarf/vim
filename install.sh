@@ -13,3 +13,4 @@ echo 'Retrieving sub modules'
 cd ~/.vim
 git submodule init
 git submodule update
+vim +BundleInstall +qall

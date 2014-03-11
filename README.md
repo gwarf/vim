@@ -16,12 +16,10 @@ cd ~/.vim
 git submodule init
 git submodule update
 ln -s ~/.vim/vimrc ~/.vimrc
-```
-
-``` sh
-# Install all bundles
 vim +BundleInstall +qall
 ```
+
+Automatted installation
 
 ``` sh
 curl -L https://raw.github.com/gwarf/vim/master/install.sh | sh
