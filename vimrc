@@ -64,6 +64,18 @@ set noerrorbells
 " Ensure modelines are enabled
 set modeline
 
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red
+highlight ExtraWhitespace ctermbg=red guibg=red
+
+" Show trailing whitespace:
+match ExtraWhitespace /\s\+$/
+" Show trailing whitespace and spaces before a tab:
+match ExtraWhitespace /\s\+$\| \+\ze\t/
+" Show tabs that are not at the start of a line:
+match ExtraWhitespace /[^\t]\zs\t\+/
+" Show spaces used for indenting (so you use only tabs for indenting).
+match ExtraWhitespace /^\t*\zs \+/
+
 set background=dark
 
 colorscheme solarized
@@ -74,9 +86,9 @@ colorscheme solarized
 " colorscheme transparent
 
 if &diff
-  colorscheme evening
+  "colorscheme evening
+  colorscheme torte
 endif
-
 
 " Diff colors
 "highlight DiffAdd term=reverse cterm=bold ctermbg=green ctermfg=black
@@ -84,8 +96,13 @@ endif
 "highlight DiffText term=reverse cterm=bold ctermbg=gray ctermfg=black
 "highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black
 
-set number          " show line numbers
-"highlight LineNr ctermbg=black ctermfg=gray
+
+" show line numbers
+set number
+" draw a vertical line
+if v:version >= 703
+set colorcolumn=80
+endif
 
 " vim-powerline
 " https://github.com/Lokaltog/vim-powerline
@@ -103,8 +120,6 @@ set shortmess=t
 "set showcmd     " Affiche les commandes dans la barre de status
 
 set textwidth=72  " Largeur maxi du texte inséré
-map # {v}! par 72
-map @ {v}! par 72j
 
 set history=2000  " Nombre de commandes dans l'historique
 
@@ -133,8 +148,19 @@ endif
 
 set ignorecase
 set incsearch
-set scs       " No ignorecase if Uppercase chars in search
-"set hls      " highlight all matches...
+" No ignorecase if Uppercase chars in search
+set scs
+" highlight all matches...
+set hls
+
+" Keys
+" Use jk instead of ESC for leaving insert mode
+inoremap jk <ESC>
+" Toggle search higlighting
+nnoremap <F2> :set hls!<CR>
+
+map # {v}! par 72
+map @ {v}! par 72j
 set wrapscan  " begin search at top when EOF reached
 
 " IMPORTANT: grep will sometimes skip displaying the file name if you
@@ -213,7 +239,7 @@ endfunction
 
 if has("autocmd")
   " Delete spaces at EOL
-  " FIXME need to disable this when writting mails
+  " FIXME need to disable this when writing mails
   " autocmd BufWrite * silent! %s/[\r \t]\+$//
   "Autoremove ^M in DOS files
   autocmd BufRead * silent! %s/$//
@@ -312,8 +338,7 @@ let use_xhtml = 1
 let html_use_css = 1
 
 " Java
-autocmd FileType java set omnifunc=javacomplete#Complete
-set completefunc=javacomplete#CompleteParamsInfo 
+autocmd FileType java set omnifunc=javacomplete#Complete, set completefunc=javacomplete#CompleteParamsInfo 
 autocmd BufNewfile,BufRead *.java,*.jsp, set autoindent noexpandtab tabstop=4 shiftwidth=4
 let java_highlight_java_lang_ids=1
 let java_highlight_functions="style"
@@ -412,6 +437,22 @@ let $MANPAGER = "sed -e 's:\\x1B\\[[[:digit:]]\\+m::g'"
 " :help fo-table
 autocmd BufEnter,BufNewFile,BufRead ~/tmp/mutt* set nocindent ft=mail et textwidth=72 formatoptions=tcqn
 "autocmd BufNewfile,BufRead /tmp/mutt*[0-9] set nobk nowb
+" mutt: insert attachment with ranger
+fun! RangerMuttAttach()
+    if filereadable('/tmp/chosendir')
+        silent !ranger --choosefiles=/tmp/chosenfiles --choosedir=/tmp/chosendir "$(cat /tmp/chosendir)"
+    else
+        silent !ranger --choosefiles=/tmp/chosenfiles --choosedir=/tmp/chosendir
+    endif
+    if filereadable('/tmp/chosenfiles')
+       " call system('sed "s/\(.*\)/Attach: \1/" /tmp/chosenfiles > /tmp/muttattach')
+        call append('.', map(readfile('/tmp/chosenfiles'), '"Attach: ".v:val'))
+        exec 'read /tmp/muttattach'
+        call system('rm /tmp/chosenfiles /tmp/muttattach')
+    endif
+    redraw!
+endfun
+map <C-a> magg/Reply-To<CR><ESC>:call RangerMuttAttach()<CR>`a
 
 match Todo /\s\+$/
 
@@ -446,9 +487,6 @@ map ,V :source ~/.vimrc
 
 " N'utilise pas le mode Ex, utilise Q pour le formatage
 map Q gq
-
-" Toggle search
-nnoremap <F2> :set hls!<CR>
 
 " perl style # commenting
 autocmd FileType php,yaml  noremap <F5> :s/\v^(\s*)/\1#/ <CR>
