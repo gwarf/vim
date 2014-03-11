@@ -6,7 +6,7 @@ cd $_
 git clone git://github.com/gwarf/vim.git
 
 echo 'Symlinking vim'
-ln -s vim ~/.vim
+ln -s $(pwd)/vim ~/.vim
 ln -s ~/.vim/vimrc ~/.vimrc
 
 echo 'Retrieving sub modules'
