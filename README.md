@@ -12,8 +12,17 @@ Usage
 =====
 ```
 git clone git@github.com:gwarf/vim.git ~/.vim
+cd ~/.vim
 git submodule init
 git submodule update
 ln -s ~/.vim/vimrc ~/.vimrc
+```
+
+``` sh
+# Install all bundles
 vim +BundleInstall +qall
+```
+
+``` sh
+curl -L https://raw.github.com/gwarf/vim/master/install.sh | sh
 ```
