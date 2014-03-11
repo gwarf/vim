@@ -40,7 +40,8 @@ Bundle 'godlygeek/tabular'
 Bundle 'scrooloose/syntastic'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
-Bundle 'garbas/vim-snipmate'
+"Bundle 'garbas/vim-snipmate'
+Bundle 'SirVer/ultisnips'
 Bundle "honza/vim-snippets"
 Bundle 'guyzmo/vim-yaposting'
 Bundle "guyzmo/notmuch-abook"
