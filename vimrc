@@ -159,6 +159,9 @@ inoremap jk <ESC>
 " Toggle search higlighting
 nnoremap <F2> :set hls!<CR>
 
+" Use :w!! to write to a read only file by calling sudo
+cmap w!! %!sudo tee > /dev/null %
+
 map # {v}! par 72
 map @ {v}! par 72j
 set wrapscan  " begin search at top when EOF reached
