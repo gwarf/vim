@@ -515,13 +515,13 @@ abbr cad c'est à dire
 " Définition des régalges GUI
 if has("gui_running")
   if has("gui_gtk2")
-      set guifont=Deja\ Vu\ Sans\ Mono\ 9
+      set guifont=Inconsolata\ 16
     elseif has("x11")
         " set guifont=-*-courier-medium-r-normal-*-11-140-*-*-m-iso10646-1
         " set guifont=-misc-fixed-medium-r-semicondensed-*-*-111-75-75-c-*-iso8859-15
-        set guifont=Deja\ Vu\ Sans\ Mono\ 9
+        set guifont=Inconsolata\ 16
     else
-        set guifont=Deja\ Vu\ Sans\ Mono\ 9
+        set guifont=Inconsolata\ 16
         " set guifont=DejaVu_Sans_Mono:h9:cBook
     endif
     " Ajoute une marge à gauche pour afficher les +/- des replis
@@ -532,7 +532,8 @@ if has("gui_running")
     set lines=41
    " Le bouton droit affiche une popup
     set mousemodel=popup_setpos
-    colorscheme morning " autumn morning dawn
+    colorscheme solarized
+    set background=dark
     set ch=2    " Make command line two lines high
     set mousehide   " Hide the mouse when typing text
     " Make shift-insert work like in Xterm
