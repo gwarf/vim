@@ -338,7 +338,7 @@ let use_xhtml = 1
 let html_use_css = 1
 
 " Java
-autocmd FileType java set omnifunc=javacomplete#Complete, set completefunc=javacomplete#CompleteParamsInfo 
+autocmd FileType java set omnifunc=javacomplete#Complete completefunc=javacomplete#CompleteParamsInfo
 autocmd BufNewfile,BufRead *.java,*.jsp, set autoindent noexpandtab tabstop=4 shiftwidth=4
 let java_highlight_java_lang_ids=1
 let java_highlight_functions="style"
