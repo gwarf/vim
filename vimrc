@@ -35,6 +35,7 @@ Bundle 'gmarik/vundle'
 
 Bundle 'tmatilai/gitolite.vim'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-obsession'
 Bundle 'mv/mv-vim-puppet'
 Bundle 'godlygeek/tabular'
 Bundle 'scrooloose/syntastic'
@@ -49,11 +50,23 @@ Bundle "benmills/vimux"
 Bundle "elzr/vim-json"
 Bundle "altercation/vim-colors-solarized"
 Bundle "jtratner/vim-flavored-markdown"
+Bundle "tpope/vim-unimpaired"
 
 filetype plugin indent on " required
 syntax on
 
 "let g:vim_json_syntax_conceal = 0
+
+" Syntastic
+" https://github.com/scrooloose/syntastic
+" Always populate location list with errors
+" By default only populated when using :Errors
+let g:syntastic_always_populate_loc_list = 1
+" Automatically open/close error window
+let g:syntastic_auto_loc_list = 1
+" Jump to the first error detected
+let g:syntastic_auto_jump = 2
+let g:syntastic_check_on_open = 0
 
 " set mouse=a
 set mouse=
@@ -248,8 +261,8 @@ if has("autocmd")
   autocmd BufRead * silent! %s/$//
 endif
 
-" Press F5 to suppress white spaces at EOL
-:nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+" Press F8 to suppress white spaces at EOL
+:nnoremap <silent> <F8> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " TODO ensure that tab are not replaced on python files
 function! CleanCode()
@@ -455,7 +468,7 @@ fun! RangerMuttAttach()
     endif
     redraw!
 endfun
-map <C-a> magg/Reply-To<CR><ESC>:call RangerMuttAttach()<CR>`a
+map <M-A> magg/Reply-To<CR><ESC>:call RangerMuttAttach()<CR>`a
 
 match Todo /\s\+$/
 
@@ -511,9 +524,9 @@ autocmd FileType vim noremap <F6> :s/\v^(\s*)"/\1/ <CR>
 map <M-Left> :tabprevious<CR>
 map <M-Right> :tabnext<CR>
 
-" Abbréviations
-abbr qqch quelque chose
-abbr cad c'est à dire
+" Abbreviations
+ab qqch quelque chose
+ab cad c'est à dire
 
 " Définition des régalges GUI
 if has("gui_running")
