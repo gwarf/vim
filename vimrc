@@ -51,6 +51,7 @@ Bundle "elzr/vim-json"
 Bundle "altercation/vim-colors-solarized"
 Bundle "jtratner/vim-flavored-markdown"
 Bundle "tpope/vim-unimpaired"
+Bundle 'rking/ag.vim'
 
 filetype plugin indent on " required
 syntax on
@@ -615,5 +616,5 @@ endif
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " bind \ (backward slash) to grep shortcut
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+"command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
