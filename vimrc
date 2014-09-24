@@ -222,11 +222,14 @@ endif
 " use z= to get list of corrections
 " use zg to add a word to the dict
 if v:version >= 700
-  autocmd BufNewFile,BufRead *.txt set spell spelllang=en,fr
-  autocmd FileType tex set spell spelllang=fr,en
-  autocmd BufNewFile,BufRead *.tex set spell spelllang=fr,en
-  autocmd BufNewFile,BufRead *.sh set spell spelllang=en,fr
-  autocmd BufEnter,BufNewFile,BufRead ~/tmp/mutt* set spell spelllang=en,fr
+  autocmd BufNewFile,BufRead *.txt set spell spelllang=en
+  autocmd BufNewFile,BufRead *.md set spell spelllang=en complete+=kspell
+  autocmd BufNewFile,BufRead *.tex set spell spelllang=fr,en complete+=kspell
+  autocmd BufNewFile,BufRead *.sh set spell selllang=en complete+=kspell
+  autocmd FileType tex set spell spelllang=fr,en complete+=kspell
+  autocmd FileType gitcommit setlocal spell spelllang=en complete+=kspell
+  autocmd BufEnter,BufNewFile,BufRead ~/tmp/mutt* set spell spelllang=en,fr complete+=kspell
+
   augroup markdown
     au!
     au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
@@ -524,6 +527,7 @@ autocmd FileType vim noremap <F6> :s/\v^(\s*)"/\1/ <CR>
 " Tabs commands
 map <M-Left> :tabprevious<CR>
 map <M-Right> :tabnext<CR>
+"imap <Tab> <C-P>
 
 " Abbreviations
 ab qqch quelque chose
