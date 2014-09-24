@@ -62,12 +62,12 @@ syntax on
 " https://github.com/scrooloose/syntastic
 " Always populate location list with errors
 " By default only populated when using :Errors
-let g:syntastic_always_populate_loc_list = 1
+autocmd Filetype puppet let g:syntastic_always_populate_loc_list = 1
 " Automatically open/close error window
 let g:syntastic_auto_loc_list = 1
 " Jump to the first error detected
 let g:syntastic_auto_jump = 2
-let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_open = 1
 
 " set mouse=a
 set mouse=
@@ -528,6 +528,7 @@ map <M-Right> :tabnext<CR>
 " Abbreviations
 ab qqch quelque chose
 ab cad c'est à dire
+ab teh the
 
 " Définition des régalges GUI
 if has("gui_running")
