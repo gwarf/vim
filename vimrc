@@ -529,6 +529,12 @@ map <M-Left> :tabprevious<CR>
 map <M-Right> :tabnext<CR>
 "imap <Tab> <C-P>
 
+" Simpler splits navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 " Abbreviations
 ab qqch quelque chose
 ab cad c'est à dire
