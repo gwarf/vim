@@ -318,9 +318,10 @@ set   ttyscroll=1
 set autoindent
 "set cindent
 set cinoptions=(0 " Options d'indentation pour un fichier C
-"set tabstop=2       " Taille des tabulations
-"set expandtab       " Remplacer les tab par des espaces
-"set shiftwidth=2    " taille de l'indentation.
+set tabstop=2       " Taille des tabulations
+set expandtab       " Remplacer les tab par des espaces
+set smarttab
+set shiftwidth=2    " taille de l'indentation.
 set smartindent     " smart indent
 set smartcase
 
