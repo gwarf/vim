@@ -149,6 +149,8 @@ set scs
 set hls
 
 " Keys
+let mapleader=","
+
 " Use jk instead of ESC for leaving insert mode
 inoremap jk <ESC>
 " Toggle search higlighting
