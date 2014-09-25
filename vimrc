@@ -105,11 +105,9 @@ endif
 set laststatus=2
 let g:airline_line_fonts = 1
 
-"set cursorline
+set cursorline
+set cursorcolumn
 "highlight CursorLine term=reverse cterm=reverse
-"set statusline=%F%m%r%h%w\ [Line\ %04l]\ [Col\ %04v]\ [%p%%]\ [ASCII\ \%03.3b]\ [Type\ %Y/%{&ff}]\ [%{strftime(\"%H:%M:%S-%d/%m/%Y\")}]
-"set statusline=%F%m%r%h%w\ [%l,%v:%p%%]\ [ascii\ \%03.3b]\ %y[%{&ff}]\ [%{strftime(\"%H:%M:%S-%d/%m/%Y\")}]
-set laststatus=2  " Affiche une barre de status en bas de l'écran
 set title       " show title in console title bar
 "set showmode    " shows the current mode in statusline
 "set shm=a      " use shortest messages
