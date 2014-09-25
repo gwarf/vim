@@ -4,57 +4,52 @@ set encoding=utf-8
 set nocompatible " be iMproved
 filetype off " required for vundle setup
 
+" set the runtime path to include Vundle and initialize
 " requires vundle installed
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-" Examples of repo management
-" from github
-" Bundle 'tpope/vim-fugitive'
-" from vim-scripts
-" Bundle 'FuzzyFinder'
-" other git
-" Bundle 'git://git.wincent.com/command-t.git'
-" local machine
-" Bundle 'file:///home/baptiste/path/to/plugin'
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
 
- " Brief help
- " :BundleList          - list configured bundles
- " :BundleInstall(!)    - install(update) bundles
- " :BundleSearch(!) foo - search(or refresh cache first) for foo
- " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
- "
- " see :h vundle for more details or wiki for FAQ
- " NOTE: comments after Bundle command are not allowed..
+Plugin 'tmatilai/gitolite.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-obsession'
+Plugin 'mv/mv-vim-puppet'
+Plugin 'godlygeek/tabular'
+Plugin 'scrooloose/syntastic'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+"Plugin 'garbas/vim-snipmate'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'guyzmo/vim-yaposting'
+Plugin 'guyzmo/notmuch-abook'
+Plugin 'benmills/vimux'
+Plugin 'elzr/vim-json'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'jtratner/vim-flavored-markdown'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'rking/ag.vim'
 
-" Install all bundles
-" vim +BundleInstall +qall
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
 
-Bundle 'tmatilai/gitolite.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-obsession'
-Bundle 'mv/mv-vim-puppet'
-Bundle 'godlygeek/tabular'
-Bundle 'scrooloose/syntastic'
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-"Bundle 'garbas/vim-snipmate'
-Bundle 'SirVer/ultisnips'
-Bundle "honza/vim-snippets"
-Bundle 'guyzmo/vim-yaposting'
-Bundle "guyzmo/notmuch-abook"
-Bundle "benmills/vimux"
-Bundle "elzr/vim-json"
-Bundle "altercation/vim-colors-solarized"
-Bundle "jtratner/vim-flavored-markdown"
-Bundle "tpope/vim-unimpaired"
-Bundle 'rking/ag.vim'
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
-filetype plugin indent on " required
-syntax on
+syntax enable
 
 "let g:vim_json_syntax_conceal = 0
 
@@ -78,11 +73,7 @@ set noerrorbells
 " Ensure modelines are enabled
 set modeline
 
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red
-highlight ExtraWhitespace ctermbg=red guibg=red
-
 set background=dark
-
 colorscheme solarized
 "let g:solarized_termcolors=256
 "let g:solarized_visibility="high"
@@ -103,6 +94,7 @@ endif
 
 " show line numbers
 set number
+
 " draw a vertical line
 if v:version >= 703
 set colorcolumn=80
@@ -449,18 +441,18 @@ autocmd BufEnter,BufNewFile,BufRead ~/tmp/mutt* set nocindent ft=mail et textwid
 "autocmd BufNewfile,BufRead /tmp/mutt*[0-9] set nobk nowb
 " mutt: insert attachment with ranger
 fun! RangerMuttAttach()
-    if filereadable('/tmp/chosendir')
-        silent !ranger --choosefiles=/tmp/chosenfiles --choosedir=/tmp/chosendir "$(cat /tmp/chosendir)"
-    else
-        silent !ranger --choosefiles=/tmp/chosenfiles --choosedir=/tmp/chosendir
-    endif
-    if filereadable('/tmp/chosenfiles')
-       " call system('sed "s/\(.*\)/Attach: \1/" /tmp/chosenfiles > /tmp/muttattach')
-        call append('.', map(readfile('/tmp/chosenfiles'), '"Attach: ".v:val'))
-        exec 'read /tmp/muttattach'
-        call system('rm /tmp/chosenfiles /tmp/muttattach')
-    endif
-    redraw!
+  if filereadable('/tmp/chosendir')
+    silent !ranger --choosefiles=/tmp/chosenfiles --choosedir=/tmp/chosendir "$(cat /tmp/chosendir)"
+  else
+    silent !ranger --choosefiles=/tmp/chosenfiles --choosedir=/tmp/chosendir
+  endif
+  if filereadable('/tmp/chosenfiles')
+   " call system('sed "s/\(.*\)/Attach: \1/" /tmp/chosenfiles > /tmp/muttattach')
+   call append('.', map(readfile('/tmp/chosenfiles'), '"Attach: ".v:val'))
+   exec 'read /tmp/muttattach'
+   call system('rm /tmp/chosenfiles /tmp/muttattach')
+  endif
+  redraw!
 endfun
 map <M-A> magg/Reply-To<CR><ESC>:call RangerMuttAttach()<CR>`a
 
