@@ -33,6 +33,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'rking/ag.vim'
+Plugin 'bling/vim-airline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -100,9 +101,9 @@ if v:version >= 703
 set colorcolumn=80
 endif
 
-" vim-powerline
-" https://github.com/Lokaltog/vim-powerline
-"let g:Powerline_symbols = 'fancy'
+" vim-airline
+set laststatus=2
+let g:airline_line_fonts = 1
 
 "set cursorline
 "highlight CursorLine term=reverse cterm=reverse
