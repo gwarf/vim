@@ -106,8 +106,7 @@ set laststatus=2
 let g:airline_line_fonts = 1
 
 set cursorline
-set cursorcolumn
-"highlight CursorLine term=reverse cterm=reverse
+"set cursorcolumn
 set title       " show title in console title bar
 "set showmode    " shows the current mode in statusline
 "set shm=a      " use shortest messages
