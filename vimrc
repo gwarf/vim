@@ -81,23 +81,26 @@ set modeline
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red
 highlight ExtraWhitespace ctermbg=red guibg=red
 
-" Show trailing whitespace:
-match ExtraWhitespace /\s\+$/
-" Show trailing whitespace and spaces before a tab:
-match ExtraWhitespace /\s\+$\| \+\ze\t/
-" Show tabs that are not at the start of a line:
-match ExtraWhitespace /[^\t]\zs\t\+/
-" Show spaces used for indenting (so you use only tabs for indenting).
-match ExtraWhitespace /^\t*\zs \+/
-
 set background=dark
 
 colorscheme solarized
+"let g:solarized_termcolors=256
+"let g:solarized_visibility="high"
 "colorscheme torte
 " colorscheme zellner
 " colorscheme elflord
 " colorscheme desert
 " colorscheme transparent
+
+" Show trailing whitespace:
+match ExtraWhitespace /\s\+$/
+autocmd ColorScheme solarized match ExtraWhitespace /\s\+$/
+" Show trailing whitespace and spaces before a tab:
+"match ExtraWhitespace /\s\+$\| \+\ze\t/
+" Show tabs that are not at the start of a line:
+"match ExtraWhitespace /[^\t]\zs\t\+/
+" Show spaces used for indenting (so you use only tabs for indenting).
+"match ExtraWhitespace /^\t*\zs \+/
 
 if &diff
   "colorscheme evening
@@ -225,7 +228,7 @@ if v:version >= 700
   autocmd BufNewFile,BufRead *.txt set spell spelllang=en
   autocmd BufNewFile,BufRead *.md set spell spelllang=en complete+=kspell
   autocmd BufNewFile,BufRead *.tex set spell spelllang=fr,en complete+=kspell
-  autocmd BufNewFile,BufRead *.sh set spell selllang=en complete+=kspell
+  autocmd BufNewFile,BufRead *.sh set spell spelllang=en complete+=kspell
   autocmd FileType tex set spell spelllang=fr,en complete+=kspell
   autocmd FileType gitcommit setlocal spell spelllang=en complete+=kspell
   autocmd BufEnter,BufNewFile,BufRead ~/tmp/mutt* set spell spelllang=en,fr complete+=kspell
