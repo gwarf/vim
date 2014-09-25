@@ -94,6 +94,10 @@ endif
 "highlight DiffText term=reverse cterm=bold ctermbg=gray ctermfg=black
 "highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black
 
+" Do not unload buffers on abandon (opening a new file un current buffer)
+" Use Ctrl-o to switch back to location save in jumplist
+set hidden
+
 " show line numbers
 set number
 
