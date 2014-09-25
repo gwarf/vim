@@ -3,4 +3,3 @@ backup/
 swap/
 .swp
 bundle/**
-~bundle/vundle
