@@ -86,21 +86,9 @@ set background=dark
 colorscheme solarized
 "let g:solarized_termcolors=256
 "let g:solarized_visibility="high"
-"colorscheme torte
-" colorscheme zellner
-" colorscheme elflord
-" colorscheme desert
-" colorscheme transparent
 
-" Show trailing whitespace:
-match ExtraWhitespace /\s\+$/
-autocmd ColorScheme solarized match ExtraWhitespace /\s\+$/
-" Show trailing whitespace and spaces before a tab:
-"match ExtraWhitespace /\s\+$\| \+\ze\t/
-" Show tabs that are not at the start of a line:
-"match ExtraWhitespace /[^\t]\zs\t\+/
-" Show spaces used for indenting (so you use only tabs for indenting).
-"match ExtraWhitespace /^\t*\zs \+/
+set list
+set listchars=tab:>.,trail:.,extends:\#,nbsp:. " Highlight problematic whitespace
 
 if &diff
   "colorscheme evening
@@ -112,7 +100,6 @@ endif
 "highlight DiffChange term=reverse cterm=bold ctermbg=cyan ctermfg=black
 "highlight DiffText term=reverse cterm=bold ctermbg=gray ctermfg=black
 "highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black
-
 
 " show line numbers
 set number
