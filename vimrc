@@ -34,6 +34,7 @@ Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'rking/ag.vim'
 Plugin 'bling/vim-airline'
+" http://kien.github.io/ctrlp.vim/
 Plugin 'kien/ctrlp.vim'
 
 " All of your Plugins must be added before the following line
@@ -65,6 +66,8 @@ let g:syntastic_auto_loc_list = 1
 " Jump to the first error detected
 let g:syntastic_auto_jump = 2
 let g:syntastic_check_on_open = 1
+let g:syntastic_puppet_puppetlint_quiet_messages = { "regex": "line has more than 80 characters" }
+"let g:syntastic_quiet_messages = { "regex": "line has more than 80 characters" }
 
 " set mouse=a
 set mouse=
@@ -82,6 +85,13 @@ colorscheme solarized
 
 set list
 set listchars=tab:>.,trail:.,extends:\#,nbsp:. " Highlight problematic whitespace
+
+" Highlight redundant whitespaces and tabs.
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 if &diff
   "colorscheme evening
@@ -575,7 +585,7 @@ endif
 " let g:EclimHome = '/usr/share/vim/vimfiles/eclim'
 " let g:EclimEclipseHome = '/usr/share/eclipse'
 let g:EclimBrowser = 'firefox'
-command -range -nargs=* Google call eclim#web#SearchEngine('http://www.google.fr/search?q=<query>', <q-args>, <line1>, <line2>)
+"command -range -nargs=* Google call eclim#web#SearchEngine('http://www.google.fr/search?q=<query>', <q-args>, <line1>, <line2>)
 
 " Use Ctrl-Space for omnicompletion
 inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
@@ -627,3 +637,17 @@ augroup sourcesession
         \ source Session.vim |
         \ endif
 augroup END
+
+" CtrlP
+" Fix ctrl-p's mixed mode https://github.com/kien/ctrlp.vim/issues/556
+"let g:ctrlp_extensions = ['mixed']
+nnoremap <c-p> :CtrlPMixed<cr>
+
+
+" map the align command to align fat comma's, do need to visual select first
+vmap <LEADER>= :Align =><CR>
+
+" open vimrc in new vsplit for quick config changes
+nmap <leader>v :tabnew ~/.vimrc<cr>:lcd ~/.vim<cr>
+" auto source it on save
+autocmd! bufwritepost .vimrc source %
