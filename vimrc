@@ -643,6 +643,17 @@ augroup END
 "let g:ctrlp_extensions = ['mixed']
 nnoremap <c-p> :CtrlPMixed<cr>
 
+" UltiSnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" Custom snippets
+let g:UltiSnipsSnippetsDir        = '~/.vim/UltiSnips/'
 
 " map the align command to align fat comma's, do need to visual select first
 vmap <LEADER>= :Align =><CR>
