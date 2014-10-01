@@ -38,14 +38,21 @@ endglobal
 ###############################################################################
 snippet file "File resource type" b
 file { '${1:name}':
-	ensure  => '${2:present}',
+	ensure  => '${2:file}',
 	owner   => '${3:root}',
 	group   => '${4:root}',
 	mode    => '${5:0644}',
 	source  => 'puppet:///modules/${6:module}/${7:source}',
-	content => template('/etc/puppet/templates/${8:template}'),
-	alias   => '${9:alias}',
+	content => template('${8:template}'),
 	require => [ Package['${10:package}'], File['${11:file}'], ],
+}
+endsnippet
+
+snippet service "Service resource type" b
+service { '${1:name}':
+	ensure    => '${2:running}',
+	enable    => ${3:true},
+	hasstatus => ${4:true},
 }
 endsnippet
 
@@ -56,8 +63,8 @@ class { '${0}':
 endsnippet
 
 snippet firewall
-firewall { '050 Open port ${0}':
-	dport  => ${0},
+firewall { '050 Open port ${1}':
+	dport  => $1,
 	action => 'accept',
 }
 endsnippet
@@ -113,7 +120,7 @@ snippet classheader "Class declaration" b
 #
 # === Copyright
 #
-# Copyright `strftime("%Y")` `!v g:snips_author`
+# Copyright `!v strftime("%Y")` `!v g:snips_author`
 #
 class $1 (${3}) {
 	${4}
