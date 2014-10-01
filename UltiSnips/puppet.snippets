@@ -1,0 +1,30 @@
+snippet file "File resource type" b
+file { '${1:name}':
+	ensure  => '${2:present}',
+	owner   => '${3:root}',
+	group   => '${4:root}',
+	mode    => '${5:0644}',
+	source  => 'puppet:///modules/${6:module}/${7:source}',
+	content => template('/etc/puppet/templates/${8:template}'),
+	alias   => '${9:alias}',
+	require => [ Package['${10:package}'], File['${11:file}'], ],
+}
+endsnippet
+
+snippet =os "selector on OS" b
+	= $::operatingsystem ? {
+		/(redhat|centos)/ => 'bin',
+		/(ubuntu|debian)/ => 'bin',
+		default           => undef,
+	}
+endsnippet
+
+snippet = "selector on OS family" b
+	= $::osfamily ? {
+		'Debian' => 'bin',
+		'RedHat' => 'bin',
+		default  => undef,
+	}
+endsnippet
+
+# vim:ft=snippets:
