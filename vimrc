@@ -121,7 +121,7 @@ set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline_line_fonts = 1
 
-set cursorline
+"set cursorline
 "set cursorcolumn
 set title       " show title in console title bar
 "set showmode    " shows the current mode in statusline
@@ -648,6 +648,8 @@ nnoremap <c-p> :CtrlPMixed<cr>
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:snips_author_email='baptiste@bapt.name'
+let g:snips_author='Baptiste Grenier'
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
