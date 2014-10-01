@@ -55,24 +55,31 @@ class { '${0}':
 }
 endsnippet
 
+snippet firewall
+firewall { '050 Open port ${0}':
+	dport  => ${0},
+	action => 'accept',
+}
+endsnippet
+
 snippet =os "selector on OS" b
-	= $::operatingsystem ? {
-		/(redhat|centos)/ => 'bin',
-		/(ubuntu|debian)/ => 'bin',
-		default           => undef,
-	}
+= $::operatingsystem ? {
+	/(redhat|centos)/ => 'bin',
+	/(ubuntu|debian)/ => 'bin',
+	default           => undef,
+}
 endsnippet
 
 snippet = "selector on OS family" b
-	= $::osfamily ? {
-		'Debian' => 'bin',
-		'RedHat' => 'bin',
-		default  => undef,
-	}
+= $::osfamily ? {
+	'Debian' => 'bin',
+	'RedHat' => 'bin',
+	default  => undef,
+}
 endsnippet
 
 # Header to match http://docs.puppetlabs.com/guides/style_guide.html#puppet-doc
-snippet classname "Class declaration" b
+snippet classheader "Class declaration" b
 # == Class: ${1:`!p snip.rv = get_module_namespace_and_basename()`}
 #
 # ${2:Full description of class $1 here}
