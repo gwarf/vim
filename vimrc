@@ -57,19 +57,6 @@ syntax enable
 
 "let g:vim_json_syntax_conceal = 0
 
-" Syntastic
-" https://github.com/scrooloose/syntastic
-" Always populate location list with errors
-" By default only populated when using :Errors
-autocmd Filetype puppet let g:syntastic_always_populate_loc_list = 1
-" Automatically open/close error window
-let g:syntastic_auto_loc_list = 1
-" Jump to the first error detected
-let g:syntastic_auto_jump = 2
-let g:syntastic_check_on_open = 1
-let g:syntastic_puppet_puppetlint_quiet_messages = { "regex": "line has more than 80 characters" }
-"let g:syntastic_quiet_messages = { "regex": "line has more than 80 characters" }
-
 " set mouse=a
 set mouse=
 
@@ -250,6 +237,14 @@ if v:version >= 700
   highlight SpellLocal term=underline cterm=underline
 endif
 
+" TTY
+set ttyfast
+set ttybuiltin
+"       ttyscroll:      turn off scrolling -> faster!
+set   ttyscroll=1
+"       ttytype:
+" set   ttytype=rxvt
+
 function! s:DisplayStatus(msg)
   echohl Todo
   echo a:msg
@@ -260,6 +255,7 @@ if has("autocmd")
   " Delete spaces at EOL
   " FIXME need to disable this when writing mails
   " autocmd BufWrite * silent! %s/[\r \t]\+$//
+  autocmd BufWrite * silent! call CleanCode()
   "Autoremove ^M in DOS files
   autocmd BufRead * silent! %s/$//
 endif
@@ -291,46 +287,6 @@ map <M-Right> :tabnext<CR>
 highlight TabLine term=none cterm=none
 highlight TabllineSel ctermbg=darkblue
 
-" Sign markers
-sign define SignSymbol text=>> linehl=Warning texthl=Error
-
-let s:signMarks = {}
-let s:jumpMarks = {}
-
-function! MarkSign()
-  let filename = bufname(winbufnr(winnr()))
-  let ln = line(".")
-  if (has_key(s:signMarks, filename))
-    let s:signMarks[filename] += 1
-  else
-    let s:signMarks[filename] = 1
-  endif
-  exe ':sign place ' . s:signMarks[filename] . ' line=' . ln . ' name=SignSymbol file=' . expand('%:p')
-endfunction
-
-function! JumpToSign()
-  let filename = bufname(winbufnr(winnr()))
-  if (has_key(s:signMarks, filename))
-    if (has_key(s:jumpMarks, filename))
-      let s:jumpMarks[filename] += 1
-    else
-      let s:jumpMarks[filename] = 1
-    endif
-    if (s:jumpMarks[filename] > s:signMarks[filename])
-      let s:jumpMarks[filename] = 1
-    endif
-    silent! execute ':sign jump ' . s:jumpMarks[filename] . ' file=' . expand('%:p')
-  endif
-endfunction
-
-" TTY
-set ttyfast
-set ttybuiltin
-"       ttyscroll:      turn off scrolling -> faster!
-set   ttyscroll=1
-"       ttytype:
-" set   ttytype=rxvt
-
 " Default indentation
 set autoindent
 "set cindent
@@ -342,70 +298,6 @@ set shiftwidth=2    " taille de l'indentation.
 set smartindent     " smart indent
 set smartcase
 
-" C
-autocmd FileType c set omnifunc=ccomplete#Complete
-autocmd BufNewfile,BufRead *.c,*.h,*.cpp set expandtab tabstop=2
-"let c_minlines = 200
-let c_comment_strings = 1
-
-" CSS
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
-" HTML
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd BufNewFile,BufRead *.html set autoindent formatoptions=tcqwl textwidth=72 shiftwidth=2 softtabstop=2 tabstop=2
-let use_xhtml = 1
-let html_use_css = 1
-
-" Java
-autocmd FileType java set omnifunc=javacomplete#Complete completefunc=javacomplete#CompleteParamsInfo
-autocmd BufNewfile,BufRead *.java,*.jsp, set autoindent noexpandtab tabstop=4 shiftwidth=4
-let java_highlight_java_lang_ids=1
-let java_highlight_functions="style"
-let java_highlight_debug=1
-let java_mark_braces_in_parens_as_errors=1
-let java_highlight_all=1
-let java_highlight_debug=1
-let java_ignore_javadoc=1
-let java_highlight_java_lang_ids=1
-let java_highlight_functions="style"
-let java_minlines = 150
-let java_comment_strings=1
-let java_highlight_java_lang_ids=1
-"Java anonymous classes. Sometimes, you have to use them.
-set cinoptions+=j1
-
-" JavaScript
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-let g:syntax_extra_javascript='doxygen'
-
-" Perl
-autocmd BufNewFile,BufRead *.pl,*.pm, set shiftwidth=2
-
-" PHP
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd BufNewFile,BufRead *.php,*.php[345] set shiftwidth=4 expandtab softtabstop=4 tabstop=4
-autocmd BufNewFile,BufRead *.php5 set syntax=php
-let php_sql_query = 1
-let php_noShortTags = 1
-let php_parent_error_close = 1
-"let php_parent_error_open = 1
-"let php_minlines=300
-let php_htmlInStrings=1
-"let php_folding = 1
-
-" Python
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType python set expandtab tabstop=4 shiftwidth=4
-autocmd BufRead,BufNewFile *.py syntax on
-autocmd BufRead,BufNewFile *.py set ai
-autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-
-" TeX
-autocmd FileType tex set omnifunc=syntaxcomplete#Complete
-autocmd FileType tex set tabstop=2 shiftwidth=2 nocindent
-autocmd BufNewFile,BufRead *.tex set autoindent formatoptions=tcq2l textwidth=72 shiftwidth=2 softtabstop=2 tabstop=2
-
 " Text
 autocmd FileType text setlocal textwidth=72
 autocmd BufNewFile,BufRead *.txt set tw=72 nocindent
@@ -413,12 +305,6 @@ autocmd BufNewFile,BufRead *.txt set tw=72 nocindent
 " Shell
 autocmd FileType sh setlocal textwidth=72
 autocmd BufNewFile,BufRead *.sh set tw=72 autoindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
-
-" XML
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType xml set tabstop=2 shiftwidth=2
-"autocmd Filetype html,xml,xsl source ~/.vim/scripts/closetag.vim
-autocmd BufNewFile,BufRead *.sgml,*.xsl set autoindent formatoptions=tcq2l textwidth=72 shiftwidth=2 softtabstop=2 tabstop=2 noexpandtab
 
 " doxygen
 let g:load_doxygen_syntax=1
@@ -540,47 +426,36 @@ ab qqch quelque chose
 ab cad c'est à dire
 ab teh the
 
-" Définition des régalges GUI
+" GUI settings
 if has("gui_running")
-  if has("gui_gtk2")
-      set guifont=Inconsolata\ 16
-    elseif has("x11")
-        " set guifont=-*-courier-medium-r-normal-*-11-140-*-*-m-iso10646-1
-        " set guifont=-misc-fixed-medium-r-semicondensed-*-*-111-75-75-c-*-iso8859-15
-        set guifont=Inconsolata\ 16
-    else
-        set guifont=Inconsolata\ 16
-        " set guifont=DejaVu_Sans_Mono:h9:cBook
-    endif
-    " Ajoute une marge à gauche pour afficher les +/- des replis
-    set foldcolumn=2
-  "Nombre de colonnes à afficher
-    set co=150
-    "Nombre de lignes à afficher
-    set lines=41
-   " Le bouton droit affiche une popup
-    set mousemodel=popup_setpos
-    colorscheme solarized
-    set background=dark
-    set ch=2    " Make command line two lines high
-    set mousehide   " Hide the mouse when typing text
-    " Make shift-insert work like in Xterm
-    map <S-Insert> <MiddleMouse>
-    map! <S-Insert> <MiddleMouse>
-    " Set nice colors
-    " background for normal text is light grey
-    " Text below the last line is darker grey
-    " Cursor is green, Cyan when ":lmap" mappings are active
-    " Constants are not underlined but have a slightly lighter background
-    " highlight Normal guibg=grey90
-    " hi Normal guibg=black guifg=lightgrey
-    highlight Cursor guibg=Green guifg=NONE
-    highlight lCursor guibg=Cyan guifg=NONE
-    highlight NonText guibg=grey80
-    highlight Constant gui=NONE guibg=grey95
-    highlight Special gui=NONE guibg=grey95
+  colorscheme solarized
+  set background=dark
+  set guifont=Inconsolata\ 16
+  set foldcolumn=2
+  " Number of columns to display
+  set co=150
+  " Number of lines to display
+  set lines=41
+  " popup on right click
+  set mousemodel=popup_setpos
+  set ch=2    " Make command line two lines high
+  set mousehide   " Hide the mouse when typing text
+  " Make shift-insert work like in Xterm
+  map <S-Insert> <MiddleMouse>
+  map! <S-Insert> <MiddleMouse>
+  " Set nice colors
+  " background for normal text is light grey
+  " Text below the last line is darker grey
+  " Cursor is green, Cyan when ":lmap" mappings are active
+  " Constants are not underlined but have a slightly lighter background
+  " highlight Normal guibg=grey90
+  " hi Normal guibg=black guifg=lightgrey
+  highlight Cursor guibg=Green guifg=NONE
+  highlight lCursor guibg=Cyan guifg=NONE
+  highlight NonText guibg=grey80
+  highlight Constant gui=NONE guibg=grey95
+  highlight Special gui=NONE guibg=grey95
 endif
-" Fin de définition des reglages GUI
 
 " eclim
 " let g:EclimHome = '/usr/share/vim/vimfiles/eclim'
@@ -644,6 +519,17 @@ augroup END
 "let g:ctrlp_extensions = ['mixed']
 nnoremap <c-p> :CtrlPMixed<cr>
 
+" Syntastic
+" https://github.com/scrooloose/syntastic
+" Always populate location list with errors
+let g:syntastic_always_populate_loc_list = 1
+" Automatically open/close error window
+let g:syntastic_auto_loc_list = 1
+" Jump to the first error detected
+let g:syntastic_auto_jump = 2
+let g:syntastic_check_on_open = 1
+let g:syntastic_puppet_puppetlint_quiet_messages = { "regex": "line has more than 80 characters" }
+
 " UltiSnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -665,3 +551,5 @@ vmap <LEADER>= :Align =><CR>
 nmap <leader>v :tabnew ~/.vimrc<cr>:lcd ~/.vim<cr>
 " auto source it on save
 autocmd! bufwritepost .vimrc source %
+
+" vim:set ft=vim et sw=2:

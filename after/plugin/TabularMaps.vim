@@ -22,3 +22,5 @@ AddTabularPipeline! argument_list /(.*)/ map(a:lines, 'substitute(v:val, ''\s*\(
 " Restore the saved value of 'cpo'
 let &cpo = s:save_cpo
 unlet s:save_cpo
+
+" vim:set ft=vim et sw=2:
