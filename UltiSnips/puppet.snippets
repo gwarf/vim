@@ -48,6 +48,12 @@ file { '${1:name}':
 }
 endsnippet
 
+snippet pacakge "Package resource type" b
+package { '${1:name}':
+	ensure => '${2:installed}',
+}
+endsnippet
+
 snippet service "Service resource type" b
 service { '${1:name}':
 	ensure    => '${2:running}',
