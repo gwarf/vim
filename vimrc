@@ -32,6 +32,7 @@ Plugin 'elzr/vim-json'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-surround'
 Plugin 'rking/ag.vim'
 Plugin 'bling/vim-airline'
 " http://kien.github.io/ctrlp.vim/
