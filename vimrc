@@ -643,9 +643,6 @@ augroup END
 "let g:ctrlp_extensions = ['mixed']
 nnoremap <c-p> :CtrlPMixed<cr>
 
-" Tabular
-autocmd Filetype puppet AddTabularPattern puppet_params /=>
-
 " UltiSnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
