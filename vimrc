@@ -476,6 +476,14 @@ imap <C-@> <C-Space>
 " Use space fo toggle current fold
 nnoremap <Space> za
 
+" map the align command to align fat comma's, do need to visual select first
+vmap <LEADER>= :Align =><CR>
+
+" open vimrc in new vsplit for quick config changes
+nmap <leader>v :tabnew ~/.vimrc<cr>:lcd ~/.vim<cr>
+" auto source it on save
+autocmd! bufwritepost .vimrc source %
+
 " VisualSearch using * and #
 function! s:VSetSearch()
   let temp = @@
@@ -545,13 +553,5 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Custom snippets
 let g:UltiSnipsSnippetsDir        = '~/.vim/UltiSnips/'
-
-" map the align command to align fat comma's, do need to visual select first
-vmap <LEADER>= :Align =><CR>
-
-" open vimrc in new vsplit for quick config changes
-nmap <leader>v :tabnew ~/.vimrc<cr>:lcd ~/.vim<cr>
-" auto source it on save
-autocmd! bufwritepost .vimrc source %
 
 " vim:set ft=vim et sw=2:
