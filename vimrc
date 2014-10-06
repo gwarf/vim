@@ -554,4 +554,7 @@ let g:UltiSnipsEditSplit="vertical"
 " Custom snippets
 let g:UltiSnipsSnippetsDir        = '~/.vim/UltiSnips/'
 
+" promptline.vim
+let g:promptline_theme = 'jelly'
+
 " vim:set ft=vim et sw=2:
