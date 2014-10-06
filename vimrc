@@ -210,7 +210,7 @@ endif
 " use z= to get list of corrections
 " use zg to add a word to the dict
 if v:version >= 700
-  autocmd BufNewFile,BufRead *.txt set spell spelllang=en
+  autocmd BufNewFile,BufRead *.txt set spell spelllang=en, spelllang=fr
   autocmd BufNewFile,BufRead *.md set spell spelllang=en complete+=kspell
   autocmd BufNewFile,BufRead *.tex set spell spelllang=fr,en complete+=kspell
   autocmd BufNewFile,BufRead *.sh set spell spelllang=en complete+=kspell
