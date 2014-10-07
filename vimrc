@@ -555,6 +555,10 @@ let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetsDir        = '~/.vim/UltiSnips/'
 
 " promptline.vim
-let g:promptline_theme = 'jelly'
+"let g:promptline_theme = 'jelly'
+let g:promptline_theme = 'powerlineclone'
+
+" tmuxline.vom
+let g:tmuxline_preset = 'nightly_fox'
 
 " vim:set ft=vim et sw=2:
