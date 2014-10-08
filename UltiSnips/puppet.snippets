@@ -75,6 +75,17 @@ firewall { '050 Open port ${1}':
 }
 endsnippet
 
+snippet file_line "file_line (stdlib) resource type" b
+file_line { '${1:name}':
+	ensure   => '${2:present}',
+	path     => '${3:/temp/test.txt}',
+	line     => '${4:installed}',
+	after    => '${5}',
+	match    => '${6}',
+	multiple => '${7:false}',
+}
+endsnippet
+
 snippet =os "selector on OS" b
 = $::operatingsystem ? {
 	/(redhat|centos)/ => 'bin',
