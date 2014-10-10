@@ -560,6 +560,6 @@ let g:UltiSnipsSnippetsDir        = '~/.vim/UltiSnips/'
 let g:promptline_theme = 'powerlineclone'
 
 " tmuxline.vom
-let g:tmuxline_preset = 'nightly_fox'
+"let g:tmuxline_preset = 'nightly_fox'
 
 " vim:set ft=vim et sw=2:
