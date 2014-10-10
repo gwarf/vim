@@ -558,6 +558,23 @@ let g:UltiSnipsSnippetsDir        = '~/.vim/UltiSnips/'
 " promptline.vim
 "let g:promptline_theme = 'jelly'
 let g:promptline_theme = 'powerlineclone'
+let g:promptline_preset = {
+        \'a' : [ promptline#slices#host() ],
+        \'b' : [ promptline#slices#user() ],
+        \'c' : [ promptline#slices#cwd() ],
+        \'x' : [ promptline#slices#git_status() ],
+        \'y' : [ promptline#slices#vcs_branch({'hg': 1, 'svn': 1}) ],
+        \'z' : [ promptline#slices#jobs() ],
+        \'warn' : [ promptline#slices#last_exit_code() ]}
+" If no powerline symbols are available:
+"let g:promptline_powerline_symbols = 0
+"let g:promptline_symbols = {
+"    \ 'left'       : '',
+"    \ 'left_alt'   : '>',
+"    \ 'dir_sep'    : ' / ',
+"    \ 'truncation' : '...',
+"    \ 'vcs_branch' : '',
+"    \ 'space'      : ' '}
 
 " tmuxline.vom
 "let g:tmuxline_preset = 'nightly_fox'
