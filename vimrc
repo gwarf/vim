@@ -83,10 +83,10 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-if &diff
+"if &diff
   "colorscheme evening
-  colorscheme torte
-endif
+  "colorscheme torte
+"endif
 
 " Diff colors
 "highlight DiffAdd term=reverse cterm=bold ctermbg=green ctermfg=black
@@ -294,7 +294,8 @@ set autoindent
 "set cindent
 set cinoptions=(0 " Options d'indentation pour un fichier C
 set tabstop=2       " Taille des tabulations
-set expandtab       " Remplacer les tab par des espaces
+" Will change tabs in existing files
+set expandtab
 set smarttab
 set shiftwidth=2    " taille de l'indentation.
 set smartindent     " smart indent
