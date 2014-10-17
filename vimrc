@@ -32,6 +32,7 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call plug#end()
