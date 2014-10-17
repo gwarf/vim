@@ -540,8 +540,8 @@ nnoremap <c-p> :CtrlPMixed<cr>
 " https://github.com/scrooloose/syntastic
 " Always populate location list with errors
 let g:syntastic_always_populate_loc_list = 1
-" Automatically open/close error window
-let g:syntastic_auto_loc_list = 1
+" Automatically close error window
+let g:syntastic_auto_loc_list = 2
 " Jump to the first error detected
 let g:syntastic_auto_jump = 2
 let g:syntastic_check_on_open = 1
