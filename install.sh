@@ -1,16 +1,10 @@
 #!/bin/sh
 
 echo 'Cloning vim'
-mkdir -p "$HOME/repos/gwarf"
-cd $_
-git clone git://github.com/gwarf/vim.git
+git clone git://github.com/gwarf/vim.git ~/.vim
 
-echo 'Symlinking vim'
-ln -s $(pwd)/vim ~/.vim
+echo 'Symlinking vimrc'
 ln -s ~/.vim/vimrc ~/.vimrc
 
-echo 'Retrieving sub modules'
-cd ~/.vim
-git submodule init
-git submodule update
-vim +BundleInstall +qall
+echo 'Installing plugins'
+vim +PlugInstall
