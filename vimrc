@@ -222,7 +222,6 @@ if v:version >= 700
   autocmd BufNewFile,BufRead *.sh set spell spelllang=en complete+=kspell
   autocmd FileType tex set spell spelllang=fr,en complete+=kspell
   autocmd FileType gitcommit setlocal spell spelllang=en complete+=kspell
-  autocmd BufEnter,BufNewFile,BufRead ~/tmp/mutt* set spell spelllang=en,fr complete+=kspell
 
   augroup markdown
     au!
@@ -350,7 +349,8 @@ let $MANPAGER = "sed -e 's:\\x1B\\[[[:digit:]]\\+m::g'"
 " Mutt
 " autocmd BufEnter /tmp/mutt* so ~/.vim/mutt.colors
 " :help fo-table
-autocmd BufEnter,BufNewFile,BufRead ~/tmp/mutt* set nocindent ft=mail et textwidth=72 formatoptions=tcqn
+autocmd BufEnter,BufNewFile,BufRead ~/tmp/mutt* set spell spelllang=en,fr complete+=kspell noci ft=mail et tw=72 fo=tcqnaw
+"autocmd BufEnter,BufNewFile,BufRead ~/tmp/mutt* set fo+=aw
 "autocmd BufNewfile,BufRead /tmp/mutt*[0-9] set nobk nowb
 " mutt: insert attachment with ranger
 fun! RangerMuttAttach()
