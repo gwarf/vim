@@ -156,6 +156,11 @@ set hls
 
 " Keys
 let mapleader=","
+" To use space as leader
+" See how it behaves with space mapped to toggle folding...
+"let mapleader=" "
+"let mapleader = "\<Space>"
+"nnoremap <SPACE> <Nop>
 
 " Use jk instead of ESC for leaving insert mode
 inoremap jk <ESC>
