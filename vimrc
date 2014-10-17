@@ -4,57 +4,41 @@ set encoding=utf-8
 set nocompatible " be iMproved
 filetype off " required for vundle setup
 
-" set the runtime path to include Vundle and initialize
-" requires vundle installed
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-"Plugin 'garbas/vim-snipmate'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'SirVer/ultisnips'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'benmills/vimux'
-Plugin 'bling/vim-airline'
-Plugin 'edkolev/promptline.vim'
-"Plugin 'edkolev/tmuxline.vim'
-Plugin 'elzr/vim-json'
-Plugin 'godlygeek/tabular'
-Plugin 'guyzmo/notmuch-abook'
-Plugin 'guyzmo/vim-yaposting'
-Plugin 'honza/vim-snippets'
-Plugin 'jtratner/vim-flavored-markdown'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'mv/mv-vim-puppet'
-Plugin 'rking/ag.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/syntastic'
-Plugin 'tmatilai/gitolite.vim'
-Plugin 'tomtom/tlib_vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-obsession'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
+"Plug 'garbas/vim-snipmate'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'SirVer/ultisnips'
+Plug 'altercation/vim-colors-solarized'
+Plug 'benmills/vimux'
+Plug 'bling/vim-airline'
+Plug 'edkolev/promptline.vim'
+"Plug 'edkolev/tmuxline.vim'
+Plug 'elzr/vim-json'
+Plug 'godlygeek/tabular'
+Plug 'guyzmo/notmuch-abook'
+Plug 'guyzmo/vim-yaposting'
+Plug 'honza/vim-snippets'
+Plug 'jtratner/vim-flavored-markdown'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mv/mv-vim-puppet'
+Plug 'rking/ag.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/syntastic'
+Plug 'tmatilai/gitolite.vim'
+Plug 'tomtom/tlib_vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()
+
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
-
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 syntax enable
 

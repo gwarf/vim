@@ -3,3 +3,4 @@ backup/
 swap/
 .swp
 bundle/**
+/plugged/
