@@ -13,7 +13,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'benmills/vimux'
 Plug 'bling/vim-airline'
 Plug 'edkolev/promptline.vim'
-"Plug 'edkolev/tmuxline.vim'
+Plug 'edkolev/tmuxline.vim'
 Plug 'elzr/vim-json'
 Plug 'godlygeek/tabular'
 Plug 'guyzmo/notmuch-abook'
@@ -567,7 +567,26 @@ let g:promptline_preset = {
 "  \ 'vcs_branch' : '',
 "  \ 'space'      : ' '}
 
-" tmuxline.vom
-"let g:tmuxline_preset = 'nightly_fox'
+" tmuxline.vim
+let g:tmuxline_theme = 'airline'
+"let g:tmuxline_theme = 'nightly_fox'
+let g:airline#extensions#tmuxline#enabled = 0
+" #H    Hostname of local host
+" #h    Hostname of local host without the domain name
+" #F    Current window flag
+" #I    Current window index
+" #S    Session name
+" #W    Current window name
+" #(shell-command)  First line of the command's output
+" Segments: a,b,c win/cwin x,y,z
+" missing in bar
+" - uptime
+" - load
+let g:tmuxline_preset = {
+      \'a'    : '#S @ #h',
+      \'win'  : '#I #W',
+      \'cwin' : '#I #W',
+      \'y'    : '%a %d %b %Y',
+      \'z'    : '%R'}
 
 " vim:set ft=vim et sw=2:
