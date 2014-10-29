@@ -534,8 +534,10 @@ let g:syntastic_puppet_puppetlint_quiet_messages = { "regex": "line has more tha
 
 " UltiSnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-f>"
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsExpandTrigger="<c-tab>"
+let g:UltiSnipsExpandTrigger="<c-j>"
+"let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:snips_author_email='baptiste@bapt.name'
 let g:snips_author='Baptiste Grenier'
