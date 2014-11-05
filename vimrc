@@ -361,10 +361,7 @@ set wc=<TAB>
 
 " show a list of all matches when tabbing a command
 set wildmenu
-
-" how command line completion works
 set wildmode=list:longest,full
-"set wildmode=longest:full,full
 
 set wildchar=<TAB>
 set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz
