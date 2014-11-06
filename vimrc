@@ -572,6 +572,8 @@ let g:promptline_preset = {
 let g:tmuxline_theme = 'airline'
 "let g:tmuxline_theme = 'nightly_fox'
 let g:airline#extensions#tmuxline#enabled = 0
+" TODO see how to configure/fix alert status on tmux window having
+" notifications (like mutt window when there are new messages)
 " #H    Hostname of local host
 " #h    Hostname of local host without the domain name
 " #F    Current window flag
