@@ -152,6 +152,10 @@ inoremap jk <ESC>
 " Toggle search higlighting
 nnoremap <F2> :set hls!<CR>
 
+" Reselect after indent so it can easily be repeated
+vnoremap < <gv
+vnoremap > >gv
+
 " Use :w!! to write to a read only file by calling sudo
 cmap w!! %!sudo tee > /dev/null %
 
