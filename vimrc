@@ -401,6 +401,10 @@ autocmd FileType c,cpp,php noremap <F6> :s+\v^(\s*)//+\1+ <CR>
 autocmd FileType vim noremap <F5> :s/\v^(\s*)/\1"/ <CR>
 autocmd FileType vim noremap <F6> :s/\v^(\s*)"/\1/ <CR>
 
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j " Delete comment character when joining commented lines
+endif
+
 " Raccourcis pour la prog
 " imap ( ()<Left>
 " noremap " ""<Left>
