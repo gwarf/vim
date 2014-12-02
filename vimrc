@@ -546,7 +546,8 @@ let g:syntastic_puppet_puppetlint_quiet_messages = { "regex": "line has more tha
 let g:UltiSnipsExpandTrigger="<c-j>"
 "let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:snips_author_email='baptiste@bapt.name'
+"let g:snips_author_email='baptiste@bapt.name'
+let g:snips_author_email='bgrenier@gnubila.fr'
 let g:snips_author='Baptiste Grenier'
 
 " If you want :UltiSnipsEdit to split your window.
