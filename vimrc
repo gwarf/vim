@@ -37,6 +37,9 @@ Plug 'Valloric/YouCompleteMe'
 " All of your Plugins must be added before the following line
 call plug#end()
 
+" Required to allow to override sensible.vim configuration
+runtime plugin/sensible.vim
+
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
