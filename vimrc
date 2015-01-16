@@ -10,6 +10,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'SirVer/ultisnips'
 Plug 'altercation/vim-colors-solarized'
+Plug 'bkad/CamelCaseMotion'
 Plug 'benmills/vimux'
 Plug 'bling/vim-airline'
 Plug 'edkolev/promptline.vim'
@@ -86,6 +87,10 @@ autocmd BufWinLeave * call clearmatches()
 " Do not unload buffers on abandon (opening a new file un current buffer)
 " Use Ctrl-o to switch back to location save in jumplist
 set hidden
+
+" make _ a word separator
+" it breaks completion of foo_bar
+"set iskeyword-=_
 
 " show line numbers
 set number
@@ -601,5 +606,13 @@ let g:tmuxline_preset = {
       \'cwin' : '#I #W',
       \'y'    : '%a %d %b %Y',
       \'z'    : '%R'}
+
+" CamelCaseMotion
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+sunmap w
+sunmap b
+sunmap e
 
 " vim:set ft=vim et sw=2:
