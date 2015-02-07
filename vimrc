@@ -10,6 +10,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'SirVer/ultisnips'
 Plug 'altercation/vim-colors-solarized'
+Plug 'bkad/CamelCaseMotion'
 Plug 'benmills/vimux'
 Plug 'bling/vim-airline'
 Plug 'edkolev/promptline.vim'
@@ -36,6 +37,9 @@ Plug 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call plug#end()
+
+" Required to allow to override sensible.vim configuration
+runtime plugin/sensible.vim
 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -83,6 +87,10 @@ autocmd BufWinLeave * call clearmatches()
 " Do not unload buffers on abandon (opening a new file un current buffer)
 " Use Ctrl-o to switch back to location save in jumplist
 set hidden
+
+" make _ a word separator
+" it breaks completion of foo_bar
+"set iskeyword-=_
 
 " show line numbers
 set number
@@ -151,6 +159,10 @@ let mapleader=","
 inoremap jk <ESC>
 " Toggle search higlighting
 nnoremap <F2> :set hls!<CR>
+
+" Reselect after indent so it can easily be repeated
+vnoremap < <gv
+vnoremap > >gv
 
 " Use :w!! to write to a read only file by calling sudo
 cmap w!! %!sudo tee > /dev/null %
@@ -360,10 +372,9 @@ match Todo /\s\+$/
 set wc=<TAB>
 
 " show a list of all matches when tabbing a command
-set wmnu
+set wildmenu
+set wildmode=list:longest,full
 
-" how command line completion works
-set wildmode=list:longest,list:full
 set wildchar=<TAB>
 set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz
 
@@ -397,6 +408,10 @@ autocmd FileType c,cpp,php noremap <F6> :s+\v^(\s*)//+\1+ <CR>
 " vim commenting
 autocmd FileType vim noremap <F5> :s/\v^(\s*)/\1"/ <CR>
 autocmd FileType vim noremap <F6> :s/\v^(\s*)"/\1/ <CR>
+
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j " Delete comment character when joining commented lines
+endif
 
 " Raccourcis pour la prog
 " imap ( ()<Left>
@@ -501,7 +516,19 @@ if executable('ag')
 endif
 
 " bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+"nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap K :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" The Silver Searcher Ag
+" e    to open file and close the quickfix window
+" o    to open (same as enter)
+" go   to preview file (open but maintain focus on ag.vim results)
+" t    to open in new tab
+" T    to open in new tab silently
+" h    to open in horizontal split
+" H    to open in horizontal split silently
+" v    to open in vertical split
+" gv   to open in vertical split silently
+" q    to close the quickfix window
 
 " bind \ (backward slash) to grep shortcut
 "command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
@@ -534,11 +561,14 @@ let g:syntastic_puppet_puppetlint_quiet_messages = { "regex": "line has more tha
 
 " UltiSnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-f>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:snips_author_email='baptiste@bapt.name'
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+"let g:snips_author_email='baptiste@bapt.name'
+let g:snips_author_email='bgrenier@gnubila.fr'
+let g:snips_email='bgrenier@gnubila.fr'
 let g:snips_author='Baptiste Grenier'
+let g:snips_company='gnúbila'
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -571,6 +601,8 @@ let g:promptline_preset = {
 let g:tmuxline_theme = 'airline'
 "let g:tmuxline_theme = 'nightly_fox'
 let g:airline#extensions#tmuxline#enabled = 0
+" TODO see how to configure/fix alert status on tmux window having
+" notifications (like mutt window when there are new messages)
 " #H    Hostname of local host
 " #h    Hostname of local host without the domain name
 " #F    Current window flag
@@ -588,5 +620,30 @@ let g:tmuxline_preset = {
       \'cwin' : '#I #W',
       \'y'    : '%a %d %b %Y',
       \'z'    : '%R'}
+
+" CamelCaseMotion
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+sunmap w
+sunmap b
+sunmap e
+
+" Fugitive
+" fugitive git bindings
+nnoremap <space>ga :Git add %:p<CR><CR>
+nnoremap <space>gs :Gstatus<CR>
+nnoremap <space>gc :Gcommit -v -q<CR>
+nnoremap <space>gt :Gcommit -v -q %:p<CR>
+nnoremap <space>gd :Gdiff<CR>
+nnoremap <space>ge :Gedit<CR>
+nnoremap <space>gr :Gread<CR>
+nnoremap <space>gw :Gwrite<CR><CR>
+nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
+nnoremap <space>gp :Ggrep<Space>
+nnoremap <space>gm :Gmove<Space>
+nnoremap <space>gb :Git branch<Space>
+nnoremap <space>go :Git checkout<Space>
+nnoremap <space>gps :Dispatch! git push<CR>
 
 " vim:set ft=vim et sw=2:
