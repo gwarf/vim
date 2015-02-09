@@ -558,6 +558,7 @@ let g:syntastic_auto_loc_list = 2
 let g:syntastic_auto_jump = 2
 let g:syntastic_check_on_open = 1
 let g:syntastic_puppet_puppetlint_quiet_messages = { "regex": "line has more than 80 characters" }
+let g:syntastic_puppet_puppetlint_args = "--no-class_inherits_from_params_class-check"
 
 " UltiSnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
