@@ -1,5 +1,12 @@
 " ~/.vimrc
 
+" XXX Prefer python2 over python3 usage by just checking if it is present
+" :help python3
+" :help has-python
+if has('python')
+  " echo 'there is Python 2.x'
+endif
+
 set encoding=utf-8
 set nocompatible " be iMproved
 filetype off " required for vundle setup
