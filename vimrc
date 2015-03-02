@@ -630,10 +630,14 @@ let g:tmuxline_preset = {
       \'z'    : '%R'}
 
 " CamelCaseMotion
-map <silent> w <Plug>CamelCaseMotion_w
+" XXX https://github.com/bkad/CamelCaseMotion/issues/17
+" cw eats , and EOL :/ so use a custom binding with leader
+" Default bindings are also available: ',w',  ',b' and ',e'
+"map <silent> w <Plug>CamelCaseMotion_w
+map <silent> <leader>w <Plug>CamelCaseMotion_w
 map <silent> b <Plug>CamelCaseMotion_b
 map <silent> e <Plug>CamelCaseMotion_e
-sunmap w
+"sunmap w
 sunmap b
 sunmap e
 
