@@ -22,6 +22,7 @@ Plug 'benmills/vimux'
 Plug 'bling/vim-airline'
 Plug 'edkolev/promptline.vim'
 Plug 'edkolev/tmuxline.vim'
+Plug 'd11wtq/ctrlp_bdelete.vim'
 Plug 'elzr/vim-json'
 Plug 'godlygeek/tabular'
 Plug 'guyzmo/notmuch-abook'
@@ -521,6 +522,11 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
+" Load plugin for delteing buffers in CtrlP
+" Open CtrlP in buffer mode: c-p c-b
+" Mark buffers for deletion: c-z
+" Delete buffer[s]: c-@
+call ctrlp_bdelete#init()
 
 " bind K to grep word under cursor
 "nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
