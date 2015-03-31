@@ -1,0 +1,34 @@
+snippet _skel "Shebang" b
+#!/bin/sh
+$0
+endsnippet
+
+snippet header
+################################################################################
+#
+# Script: ${1:`!v expand("%:t")`}
+# Usage:  $1 ${2:parameters}
+# Description: ${3:Short description}
+# ${4:Full description of $1 here}
+#
+# Version: ${5:0.0.1}
+#
+# Project: ${6:project} `!v strftime("%Y")`
+# Author: `!v g:snips_author` <`!v g:snips_author_email`>
+# Copyright: `!v g:snips_company`
+#
+# ----------------------------------------------------------------------------
+# Changelog:
+#
+# `!v strftime("%Y")`-`!v strftime("%m")`-`!v strftime("%d")` $5: Initial version. (`!v g:snips_author_initials`)
+#
+################################################################################
+endsnippet
+
+snippet readfile
+while read line || [ -n "$line" ]; do
+  ${2}
+done < ${1}
+endsnippet
+
+# vim:ft=snippets:
