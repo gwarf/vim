@@ -319,6 +319,9 @@ autocmd BufNewFile,BufRead *.txt set tw=72 nocindent
 autocmd FileType sh setlocal textwidth=72
 autocmd BufNewFile,BufRead *.sh set tw=72 autoindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
+" Set scripts to be executable from the shell
+au BufWritePost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !chmod +x <afile> | endif | endif
+
 " doxygen
 let g:load_doxygen_syntax=1
 
