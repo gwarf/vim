@@ -585,6 +585,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:snips_author_email='bgrenier@gnubila.fr'
 let g:snips_email='bgrenier@gnubila.fr'
 let g:snips_author='Baptiste Grenier'
+let g:snips_author_initials='BG'
 let g:snips_company='gnúbila'
 
 " If you want :UltiSnipsEdit to split your window.
