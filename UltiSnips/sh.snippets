@@ -41,7 +41,7 @@ error_message() {
 endsnippet
 
 snippet init "Initialization function" b
-USAGE="$(basename \$0) {$1:arguments}"
+USAGE="$(basename \$0) ${1:arguments}"
 
 # Print a message to stderr
 #
@@ -75,7 +75,6 @@ assert_is_set() {
 # init "\$@"
 init() {
   if [ \$# -ne ${2:arguments number} ]; then
-    echo
     error_message "Wrong numbers of parameters (\$# instead of $2)\\n"
     error_message "\$USAGE\\n"
     exit 1
@@ -113,7 +112,7 @@ snippet confirm_or_exit "Confirm or exit function" b
 # confirm_or_exit
 function confirm_or_exit() {
 while true; do
-  printf "Please confirm (y or n) :\\n"
+  printf 'Please confirm (y or n) :\\n'
   read CONFIRM
   case \$CONFIRM in
     y|Y|YES|yes|Yes)
@@ -123,7 +122,7 @@ while true; do
       printf "Aborting - you entered \$CONFIRM\\n"
       exit 1
       ;;
-    *) printf "Please enter only y or n\\n"
+    *) printf 'Please enter only y or n\\n'
   esac
 done
 }
