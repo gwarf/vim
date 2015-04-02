@@ -320,7 +320,16 @@ autocmd FileType sh setlocal textwidth=72
 autocmd BufNewFile,BufRead *.sh set tw=72 autoindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
 " Set scripts to be executable from the shell
-au BufWritePost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !chmod +x <afile> | endif | endif
+"au BufWritePost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !chmod +x <afile> | endif | endif
+"au BufWritePost * if getline(1) =~ "^#!" | silent !chmod +x <afile> | endif
+
+" chmod +x on save                                              {{{2
+augroup MakeExecutableOnSave
+  " http://unix.stackexchange.com/questions/39982/vim-create-file-with-x-bit
+  " See also http://vim.wikia.com/wiki/Setting_file_attributes_without_reloading_a_buffer
+  au!
+  au BufWritePost * if getline(1) =~ "^#!" && expand("%:t") !~ "test.*py" | silent exec '!chmod +x <afile>' | endif
+augroup END
 
 " doxygen
 let g:load_doxygen_syntax=1
