@@ -3,9 +3,9 @@
 " XXX Prefer python2 over python3 usage by just checking if it is present
 " :help python3
 " :help has-python
-if has('python')
+"if has('python')
   " echo 'there is Python 2.x'
-endif
+"endif
 
 set encoding=utf-8
 set nocompatible " be iMproved
@@ -16,20 +16,23 @@ call plug#begin('~/.vim/plugged')
 "Plug 'garbas/vim-snipmate'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'SirVer/ultisnips'
+Plug 'Valloric/YouCompleteMe'
+Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
-Plug 'bkad/CamelCaseMotion'
 Plug 'benmills/vimux'
+Plug 'bkad/CamelCaseMotion'
 Plug 'bling/vim-airline'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'd11wtq/ctrlp_bdelete.vim'
 Plug 'edkolev/promptline.vim'
 Plug 'edkolev/tmuxline.vim'
-Plug 'd11wtq/ctrlp_bdelete.vim'
 Plug 'elzr/vim-json'
 Plug 'godlygeek/tabular'
 Plug 'guyzmo/notmuch-abook'
 Plug 'guyzmo/vim-yaposting'
 Plug 'honza/vim-snippets'
 Plug 'jtratner/vim-flavored-markdown'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'klen/python-mode'
 Plug 'mv/mv-vim-puppet'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -41,7 +44,6 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -112,6 +114,8 @@ endif
 set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline_line_fonts = 1
+" Automatically displays all buffers when there's only one tab open
+let g:airline#extensions#tabline#enabled = 1
 
 "set cursorline
 "set cursorcolumn
@@ -584,6 +588,19 @@ let g:syntastic_auto_jump = 2
 let g:syntastic_check_on_open = 1
 let g:syntastic_puppet_puppetlint_quiet_messages = { "regex": "line has more than 80 characters" }
 let g:syntastic_puppet_puppetlint_args = "--no-class_inherits_from_params_class-check"
+
+" Let's code with python 2
+" Use virtualenv for installing/conifugring python stuff
+"let g:syntastic_python_python_exec = '/usr/bin/python2'
+"let g:syntastic_python_flake8_exec = 'flake8-python2'
+" https://github.com/liamcurry/py3kwarn
+" https://docs.python.org/3/whatsnew/3.0.html
+" https://docs.python.org/2.6/library/2to3.html#fixers
+"let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_checkers=['flake8', 'py3kwarn']
+" python-mode
+" Show doc: C-x C-d
+" Completion: C-space, C-N and C-P
 
 " UltiSnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
