@@ -7,6 +7,11 @@ exit 0
 # vim:set ft=sh ts=2 sw=2 et:
 endsnippet
 
+snippet exit_script_on_error "Exit script on errors" b
+# Exit on first error even when using | and on unset variable
+set -eo pipefail -u
+endsnippet
+
 snippet header "File Header" b
 ###########################################################################
 #
@@ -125,6 +130,38 @@ while true; do
     *) printf 'Please enter only y or n\\n'
   esac
 done
+}
+endsnippet
+
+snippet check_presence_binary "check_presence_binary function" b
+# Check presence of a binary and make it executablek
+#
+# check_presence $binary
+check_presence() {
+  binary="\$1"
+  if [ -r "$binary" ]; then
+    if [ ! -x $binary ]; then
+      echo
+      echo "Making $binary executable"
+      chmod +x "$binary"
+    fi
+  else
+    echo "$binary is not present!"
+    exit 1
+  fi
+}
+endsnippet
+
+snippet check_presence "check_presence function" b
+# Check presence of a file
+#
+# check_presence $file
+check_presence() {
+  file="\$1"
+  if [ ! -r "\$file" ]; then
+    echo "$file is not present!"
+    exit 1
+  fi
 }
 endsnippet
 
