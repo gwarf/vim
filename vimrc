@@ -255,9 +255,9 @@ endif
 
 " TTY
 set ttyfast
-set ttybuiltin
+"set ttybuiltin
 "       ttyscroll:      turn off scrolling -> faster!
-set   ttyscroll=1
+"set   ttyscroll=1
 "       ttytype:
 " set   ttytype=rxvt
 
