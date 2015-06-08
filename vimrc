@@ -694,4 +694,10 @@ nnoremap <space>gb :Git branch<Space>
 nnoremap <space>go :Git checkout<Space>
 nnoremap <space>gps :Dispatch! git push<CR>
 
+" Neovim stuff
+if has("nvim")
+  " Use Esc to close term
+  tnoremap <Esc> <C-\><C-n>
+endif
+
 " vim:set ft=vim et sw=2:
