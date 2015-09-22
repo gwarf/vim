@@ -399,7 +399,7 @@ function! s:lod(names, types)
 endfunction
 
 function! s:lod_ft(pat, names)
-  call s:lod(a:names, ['plugin', 'after/plugin'])
+  call s:lod(a:names, ['plugin', 'after/plugin', 'syntax', 'after/syntax'])
   execute 'autocmd! PlugLOD FileType' a:pat
   if exists('#filetypeplugin#FileType')
     doautocmd filetypeplugin FileType
@@ -1192,7 +1192,11 @@ class Command(object):
           raise CmdTimedOut(['Timeout!'])
 
       tfile.seek(0)
+<<<<<<< bdb6948e7ffdf8efd740eee55a9115c3c810dd89
       result = [line.decode().rstrip() for line in tfile]
+=======
+      result = [line.decode('utf-8', 'replace').rstrip() for line in tfile]
+>>>>>>> Update plug.vim
 
       if proc.returncode != 0:
         msg = ['']
@@ -1344,7 +1348,7 @@ def esc(name):
 def nonblock_read(fname):
   """ Read a file with nonblock flag. Return the last line. """
   fread = os.open(fname, os.O_RDONLY | os.O_NONBLOCK)
-  buf = os.read(fread, 100000).decode()
+  buf = os.read(fread, 100000).decode('utf-8', 'replace')
   os.close(fread)
 
   line = buf.rstrip('\r\n')
