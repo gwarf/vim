@@ -73,8 +73,9 @@ colorscheme solarized
 "let g:solarized_termcolors=256
 "let g:solarized_visibility="high"
 
+" Highlight problematic whitespace
 set list
-set listchars=tab:>.,trail:.,extends:\#,nbsp:. " Highlight problematic whitespace
+set listchars=tab:>.,trail:.,extends:\#,nbsp:.
 
 " Highlight redundant whitespaces and tabs.
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -297,14 +298,13 @@ endfunction
 autocmd BufReadPost * silent! call s:CursorOldPosition()
 
 " Tabs and windows
-set   splitbelow   " Create new window below current one.
+set splitbelow   " Create new window below current one.
 map <M-Left> :tabprevious<CR>
 map <M-Right> :tabnext<CR>
 highlight TabLine term=none cterm=none
 highlight TabllineSel ctermbg=darkblue
 
 " Default indentation
-set autoindent
 "set cindent
 set cinoptions=(0 " Options d'indentation pour un fichier C
 set tabstop=2       " Taille des tabulations
@@ -313,7 +313,6 @@ set expandtab
 set smarttab
 set shiftwidth=2    " taille de l'indentation.
 set smartindent     " smart indent
-set smartcase
 
 " Text
 autocmd FileType text setlocal textwidth=72
