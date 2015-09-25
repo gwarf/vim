@@ -2,6 +2,12 @@
 #  Python helper code                                                   #
 #########################################################################
 
+# :help UltiSnips
+# http://bazaar.launchpad.net/~sirver/ultisnips/trunk/view/head:/doc/UltiSnips.txt
+
+# Snippets options
+# * b: snippet should be at beginning of line
+
 global !p
 import vim
 import os.path
@@ -172,6 +178,26 @@ define $1 (${3}) {
 }
 
 # vim: set et sta sw=2 ts=2 sts=2 noci noai:
+endsnippet
+
+snippet versioncmp_inf "Test if a is < b"
+versioncmp(${1}, '${2}') == -1
+endsnippet
+
+snippet versioncmp_equal "Test if a is == b"
+versioncmp(${1}, '${2}') == 0
+endsnippet
+
+snippet versioncmp_sup_equal "Test if a is >= b"
+versioncmp(${1}, '${2}') > -1
+endsnippet
+
+snippet versioncmp_sup "Test if a is > b"
+versioncmp(${1}, '${2}') > 0
+endsnippet
+
+snippet notify "Notify"
+notify { "${1}": }
 endsnippet
 
 # vim:ft=snippets:
