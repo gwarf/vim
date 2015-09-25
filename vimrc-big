@@ -4,12 +4,28 @@ filetype off " required for vundle setup
 
 call plug#begin('~/.vim/plugged')
 
-"Plug 'garbas/vim-snipmate'
-"Plug 'MarcWeber/vim-addon-mw-utils'
-"Plug 'SirVer/ultisnips'
-"Plug 'Valloric/YouCompleteMe'
-"Plug 'airblade/vim-gitgutter'
+" Snippets
+Plug 'SirVer/ultisnips'
+" Completion
+Plug 'Valloric/YouCompleteMe'
+" Colorscheme
 Plug 'altercation/vim-colors-solarized'
+" Tabular alignement
+Plug 'godlygeek/tabular'
+" Snippets for UltiSnipps
+Plug 'honza/vim-snippets'
+" Puppet-related stuff
+Plug 'mv/mv-vim-puppet'
+" Syntax validation
+Plug 'scrooloose/syntastic'
+" git integration
+Plug 'tpope/vim-fugitive'
+" Sensible default settings
+Plug 'tpope/vim-sensible'
+" Easy change of surrounding stuff (tags, quotes...)
+Plug 'tpope/vim-surround'
+"Plug 'MarcWeber/vim-addon-mw-utils'
+"Plug 'airblade/vim-gitgutter'
 "Plug 'benmills/vimux'
 "Plug 'bkad/CamelCaseMotion'
 "Plug 'bling/vim-airline'
@@ -18,22 +34,15 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'edkolev/promptline.vim'
 "Plug 'edkolev/tmuxline.vim'
 "Plug 'elzr/vim-json'
-"Plug 'godlygeek/tabular'
 "Plug 'guyzmo/notmuch-abook'
 "Plug 'guyzmo/vim-yaposting'
-"Plug 'honza/vim-snippets'
 "Plug 'jtratner/vim-flavored-markdown'
 "Plug 'klen/python-mode'
-"Plug 'mv/mv-vim-puppet'
 "Plug 'rking/ag.vim'
 "Plug 'scrooloose/nerdcommenter'
-"Plug 'scrooloose/syntastic'
 "Plug 'tmatilai/gitolite.vim'
 "Plug 'tomtom/tlib_vim'
-"Plug 'tpope/vim-fugitive'
 "Plug 'tpope/vim-obsession'
-"Plug 'tpope/vim-sensible'
-"Plug 'tpope/vim-surround'
 "Plug 'tpope/vim-unimpaired'
 
 " All of your Plugins must be added before the following line
@@ -52,6 +61,11 @@ set splitbelow
 " Show line number
 set number
 
+" draw a vertical line
+if v:version >= 703
+set colorcolumn=80
+endif
+
 " Enable modelines
 set modeline
 
@@ -60,9 +74,11 @@ set wildchar=<TAB>
 
 " Competion mode for wildchar in menus
 set wildmode=list:longest,full
+set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz
 
 " Search
-" No ignorecas if pattenrs contains Uppercase char
+set ignorecase
+" No ignorecase if pattern contains Uppercase char
 set smartcase
 " highlight all matches
 set hlsearch
@@ -76,12 +92,25 @@ set tabstop=2       " Taille des tabulations
 set list
 set listchars=tab:>.,trail:.,extends:\#,nbsp:.
 
-"let g:solarized_termcolors=256
-"let g:solarized_visibility="high"
+" Use F10 to toggle paste mode
+set pastetoggle=<F10>
 
-" Highlight problematic whitespace
-set list
-set listchars=tab:>.,trail:.,extends:\#,nbsp:.
+" Do not unload buffers on abandon (opening a new file un current buffer)
+" Use Ctrl-o to switch back to location save in jumplist
+set hidden
+
+" Backup configuration
+silent execute '!mkdir -p $HOME/.vimbackup'
+silent execute '!mkdir -p $HOME/.vimswap'
+silent execute '!mkdir -p $HOME/.vimviews'
+set backup  " Bacup modified files
+set backupdir=$HOME/.vimbackup
+set backupskip=/tmp/*,/private/tmp/*
+set writebackup
+
+" Swap file configuration
+set swapfile
+set directory=$HOME/.vimswap
 
 " Highlight redundant whitespaces and tabs.
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -101,19 +130,9 @@ autocmd BufWinLeave * call clearmatches()
 "highlight DiffText term=reverse cterm=bold ctermbg=gray ctermfg=black
 "highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black
 
-" Do not unload buffers on abandon (opening a new file un current buffer)
-" Use Ctrl-o to switch back to location save in jumplist
-set hidden
-
 " make _ a word separator
 " it breaks completion of foo_bar
 "set iskeyword-=_
-
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-
-syntax enable
 
 "let g:vim_json_syntax_conceal = 0
 
@@ -219,21 +238,6 @@ if v:version >= 700
   set foldlevel=12
 endif
 
-set pastetoggle=<F10>
-
-" Backup configuration
-silent execute '!mkdir -p $HOME/.vimbackup'
-silent execute '!mkdir -p $HOME/.vimswap'
-silent execute '!mkdir -p $HOME/.vimviews'
-set backup  " Bacup modified files
-set backupdir=$HOME/.vimbackup
-set backupskip=/tmp/*,/private/tmp/*
-set writebackup
-
-" Swap file configuration
-set swapfile
-set directory=$HOME/.vimswap
-
 set shell="zsh"
 if has("unix")
     let &shell="zsh"
@@ -279,12 +283,6 @@ set ttyfast
 "       ttytype:
 " set   ttytype=rxvt
 
-function! s:DisplayStatus(msg)
-  echohl Todo
-  echo a:msg
-  echohl None
-endfunction
-
 if has("autocmd")
   " Delete spaces at EOL
   " FIXME need to disable this when writing mails
@@ -294,28 +292,7 @@ if has("autocmd")
   autocmd BufRead * silent! %s/$//
 endif
 
-" Press F8 to suppress white spaces at EOL
-:nnoremap <silent> <F8> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-
-" TODO ensure that tab are not replaced on python files
-function! CleanCode()
-  %retab
-  silent! %s/$//
-  call s:DisplayStatus('Code cleaned')
-endfunction
-
-" When editing a file, always jump to the last known cursor position.
-" Don't do it when the position is invalid or when inside an event handler
-" (happens when dropping a file on gvim).
-function! s:CursorOldPosition()
-  if line("'\"") > 0 && line("'\"") <= line("$")
-    exe "normal g`\""
-  endif
-endfunction
-autocmd BufReadPost * silent! call s:CursorOldPosition()
-
 " Tabs and windows
-set splitbelow   " Create new window below current one.
 map <M-Left> :tabprevious<CR>
 map <M-Right> :tabnext<CR>
 highlight TabLine term=none cterm=none
@@ -324,10 +301,17 @@ highlight TabllineSel ctermbg=darkblue
 " Default indentation
 "set cindent
 set cinoptions=(0 " Options d'indentation pour un fichier C
-" Will change tabs in existing files
 
-set smartindent     " smart indent
-set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz
+""""""""""""""""""""""""""""""
+" *-(specific|related) options
+""""""""""""""""""""""""""""""
+
+" Mail edition for mutt
+" autocmd BufEnter /tmp/mutt* so ~/.vim/mutt.colors
+" :help fo-table
+autocmd BufEnter,BufNewFile,BufRead ~/tmp/mutt* set spell spelllang=en,fr complete+=kspell noci ft=mail et tw=72 fo=tcqnaw
+"autocmd BufEnter,BufNewFile,BufRead ~/tmp/mutt* set fo+=aw
+"autocmd BufNewfile,BufRead /tmp/mutt*[0-9] set nobk nowb
 
 " Text
 autocmd FileType text setlocal textwidth=72
@@ -356,24 +340,6 @@ let g:load_doxygen_syntax=1
 :au! BufNewFile,BufRead ~/.fvwm2/.fvwm*  let b:fvwm_version = 2 |
       \ set filetype=fvwm
 
-" do not change end of file
-" augroup EOL
-" autocmd!
-" autocmd BufWritePre * call EolSavePre()
-" autocmd BufWritePost * call EolSavePost()
-" augroup END
-
-" function! EolSavePre()
-"   let b:save_bin = &bin
-"   if ! &eol
-"     let &l:bin = 1
-"   endif
-" endfunction
-
-" function! EolSavePost()
-"   let &l:bin = b:save_bin
-" endfunction
-
 " make :Man command avaliable
 "source $VIMRUNTIME/ftplugin/man.vim
 " Default MANPAGER vimmanpager doesn't play well
@@ -381,40 +347,7 @@ let g:load_doxygen_syntax=1
 " so we use sed to strip them.
 let $MANPAGER = "sed -e 's:\\x1B\\[[[:digit:]]\\+m::g'"
 
-" Mutt
-" autocmd BufEnter /tmp/mutt* so ~/.vim/mutt.colors
-" :help fo-table
-autocmd BufEnter,BufNewFile,BufRead ~/tmp/mutt* set spell spelllang=en,fr complete+=kspell noci ft=mail et tw=72 fo=tcqnaw
-"autocmd BufEnter,BufNewFile,BufRead ~/tmp/mutt* set fo+=aw
-"autocmd BufNewfile,BufRead /tmp/mutt*[0-9] set nobk nowb
-" mutt: insert attachment with ranger
-fun! RangerMuttAttach()
-  if filereadable('/tmp/chosendir')
-    silent !ranger --choosefiles=/tmp/chosenfiles --choosedir=/tmp/chosendir "$(cat /tmp/chosendir)"
-  else
-    silent !ranger --choosefiles=/tmp/chosenfiles --choosedir=/tmp/chosendir
-  endif
-  if filereadable('/tmp/chosenfiles')
-   " call system('sed "s/\(.*\)/Attach: \1/" /tmp/chosenfiles > /tmp/muttattach')
-   call append('.', map(readfile('/tmp/chosenfiles'), '"Attach: ".v:val'))
-   exec 'read /tmp/muttattach'
-   call system('rm /tmp/chosenfiles /tmp/muttattach')
-  endif
-  redraw!
-endfun
-map <M-A> magg/Reply-To<CR><ESC>:call RangerMuttAttach()<CR>`a
-
 match Todo /\s\+$/
-
-function! MultipleAutoCompletion()
-  if &omnifunc != ''
-    return "\<C-x>\<C-o>"
-  elseif &dictionary != ''
-    return "\<C-x>\<C-k>"
-  else
-    return "\<C-x>\<C-n>"
-  endif
-endfunction
 
 " some filetypes got lower priority
 set su=.h,.bak,~,.o,.info,.swp,.obj
@@ -519,6 +452,43 @@ nmap <leader>v :tabnew ~/.vimrc<cr>:lcd ~/.vim<cr>
 " auto source it on save
 autocmd! bufwritepost .vimrc source %
 
+""""""""""""""""""
+" Custom functions
+""""""""""""""""""
+
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+function! s:CursorOldPosition()
+  if line("'\"") > 0 && line("'\"") <= line("$")
+    exe "normal g`\""
+  endif
+endfunction
+autocmd BufReadPost * silent! call s:CursorOldPosition()
+
+" TODO ensure that tab are not replaced on python files
+function! CleanCode()
+  %retab
+  silent! %s/$//
+  call s:DisplayStatus('Code cleaned')
+endfunction
+
+function! s:DisplayStatus(msg)
+  echohl Todo
+  echo a:msg
+  echohl None
+endfunction
+
+function! MultipleAutoCompletion()
+  if &omnifunc != ''
+    return "\<C-x>\<C-o>"
+  elseif &dictionary != ''
+    return "\<C-x>\<C-k>"
+  else
+    return "\<C-x>\<C-n>"
+  endif
+endfunction
+
 " VisualSearch using * and #
 function! s:VSetSearch()
   let temp = @@
@@ -530,9 +500,50 @@ endfunction
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR>
 
+" Press F8 to suppress white spaces at EOL
+:nnoremap <silent> <F8> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
+" do not change end of file
+" augroup EOL
+" autocmd!
+" autocmd BufWritePre * call EolSavePre()
+" autocmd BufWritePost * call EolSavePost()
+" augroup END
+
+" function! EolSavePre()
+"   let b:save_bin = &bin
+"   if ! &eol
+"     let &l:bin = 1
+"   endif
+" endfunction
+
+" function! EolSavePost()
+"   let &l:bin = b:save_bin
+" endfunction
+
+" mutt: insert attachment with ranger
+fun! RangerMuttAttach()
+  if filereadable('/tmp/chosendir')
+    silent !ranger --choosefiles=/tmp/chosenfiles --choosedir=/tmp/chosendir "$(cat /tmp/chosendir)"
+  else
+    silent !ranger --choosefiles=/tmp/chosenfiles --choosedir=/tmp/chosendir
+  endif
+  if filereadable('/tmp/chosenfiles')
+   " call system('sed "s/\(.*\)/Attach: \1/" /tmp/chosenfiles > /tmp/muttattach')
+   call append('.', map(readfile('/tmp/chosenfiles'), '"Attach: ".v:val'))
+   exec 'read /tmp/muttattach'
+   call system('rm /tmp/chosenfiles /tmp/muttattach')
+  endif
+  redraw!
+endfun
+map <M-A> magg/Reply-To<CR><ESC>:call RangerMuttAttach()<CR>`a
+
 """""""""""""""""""""""
 " Plugins configuration
 """""""""""""""""""""""
+
+"let g:solarized_termcolors=256
+"let g:solarized_visibility="high"
 
 " The Silver Searcher
 " http://robots.thoughtbot.com/faster-grepping-in-vim
