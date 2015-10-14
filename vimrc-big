@@ -10,12 +10,18 @@ Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe'
 " Colorscheme
 Plug 'altercation/vim-colors-solarized'
+" Airline statusbar
+Plug 'bling/vim-airline'
+" Ctrl-P for quick file/buffer access
+Plug 'ctrlpvim/ctrlp.vim'
 " Tabular alignement
 Plug 'godlygeek/tabular'
 " Snippets for UltiSnipps
 Plug 'honza/vim-snippets'
 " Puppet-related stuff
 Plug 'mv/mv-vim-puppet'
+" SilverSearcy plugin
+Plug 'rking/ag.vim'
 " Syntax validation
 Plug 'scrooloose/syntastic'
 " git integration
@@ -28,8 +34,6 @@ Plug 'tpope/vim-surround'
 "Plug 'airblade/vim-gitgutter'
 "Plug 'benmills/vimux'
 "Plug 'bkad/CamelCaseMotion'
-"Plug 'bling/vim-airline'
-"Plug 'ctrlpvim/ctrlp.vim'
 "Plug 'd11wtq/ctrlp_bdelete.vim'
 Plug 'edkolev/promptline.vim'
 "Plug 'edkolev/tmuxline.vim'
@@ -38,7 +42,6 @@ Plug 'edkolev/promptline.vim'
 "Plug 'guyzmo/vim-yaposting'
 "Plug 'jtratner/vim-flavored-markdown'
 "Plug 'klen/python-mode'
-"Plug 'rking/ag.vim'
 "Plug 'scrooloose/nerdcommenter'
 "Plug 'tmatilai/gitolite.vim'
 "Plug 'tomtom/tlib_vim'
@@ -147,12 +150,7 @@ if v:version >= 703
 set colorcolumn=80
 endif
 
-" vim-airline
 set laststatus=2
-let g:airline_powerline_fonts = 1
-let g:airline_line_fonts = 1
-" Automatically displays all buffers when there's only one tab open
-let g:airline#extensions#tabline#enabled = 1
 
 "set cursorline
 "set cursorcolumn
@@ -542,8 +540,16 @@ map <M-A> magg/Reply-To<CR><ESC>:call RangerMuttAttach()<CR>`a
 " Plugins configuration
 """""""""""""""""""""""
 
-"let g:solarized_termcolors=256
-"let g:solarized_visibility="high"
+" vim-airline
+let g:airline_powerline_fonts = 1
+let g:airline_line_fonts = 1
+" Automatically displays all buffers when there's only one tab open
+let g:airline#extensions#tabline#enabled = 1
+
+" CtrlP
+" Fix ctrl-p's mixed mode https://github.com/kien/ctrlp.vim/issues/556
+"let g:ctrlp_extensions = ['mixed']
+nnoremap <c-p> :CtrlPMixed<cr>
 
 " The Silver Searcher
 " http://robots.thoughtbot.com/faster-grepping-in-vim
@@ -582,6 +588,9 @@ nnoremap K :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
 "command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
 
+"let g:solarized_termcolors=256
+"let g:solarized_visibility="high"
+
 " Load session if any
 augroup sourcesession
   autocmd!
@@ -590,11 +599,6 @@ augroup sourcesession
         \ source Session.vim |
         \ endif
 augroup END
-
-" CtrlP
-" Fix ctrl-p's mixed mode https://github.com/kien/ctrlp.vim/issues/556
-"let g:ctrlp_extensions = ['mixed']
-nnoremap <c-p> :CtrlPMixed<cr>
 
 " Syntastic
 " https://github.com/scrooloose/syntastic
