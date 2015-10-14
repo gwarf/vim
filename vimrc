@@ -12,6 +12,8 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'altercation/vim-colors-solarized'
 " Airline statusbar
 Plug 'bling/vim-airline'
+" Ctrl-P for quick file/buffer access
+Plug 'ctrlpvim/ctrlp.vim'
 " Tabular alignement
 Plug 'godlygeek/tabular'
 " Snippets for UltiSnipps
@@ -125,6 +127,11 @@ let g:airline_powerline_fonts = 1
 let g:airline_line_fonts = 1
 " Automatically displays all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
+
+" CtrlP
+" Fix ctrl-p's mixed mode https://github.com/kien/ctrlp.vim/issues/556
+"let g:ctrlp_extensions = ['mixed']
+nnoremap <c-p> :CtrlPMixed<cr>
 
 " Syntastic
 " https://github.com/scrooloose/syntastic
