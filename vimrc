@@ -10,6 +10,8 @@ Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe'
 " Colorscheme
 Plug 'altercation/vim-colors-solarized'
+" Airline statusbar
+Plug 'bling/vim-airline'
 " Tabular alignement
 Plug 'godlygeek/tabular'
 " Snippets for UltiSnipps
@@ -117,6 +119,12 @@ autocmd BufReadPost * silent! call s:CursorOldPosition()
 """""""""""""""""""""""
 " Plugins configuration
 """""""""""""""""""""""
+
+" vim-airline
+let g:airline_powerline_fonts = 1
+let g:airline_line_fonts = 1
+" Automatically displays all buffers when there's only one tab open
+let g:airline#extensions#tabline#enabled = 1
 
 " Syntastic
 " https://github.com/scrooloose/syntastic
