@@ -97,6 +97,9 @@ set writebackup
 set swapfile
 set directory=$HOME/.vimswap
 
+" Use Ctrl-a to access begining of line in command mode
+cnoremap <c-a> <home>
+
 """"""""""""""""""""""""""""""
 " *-(specific|related) options
 """"""""""""""""""""""""""""""
