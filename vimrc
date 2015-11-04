@@ -13,11 +13,13 @@ Plug 'altercation/vim-colors-solarized'
 " Airline statusbar
 Plug 'bling/vim-airline'
 " Ctrl-P for quick file/buffer access
-Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
 " Tabular alignement
 Plug 'godlygeek/tabular'
 " Snippets for UltiSnipps
 Plug 'honza/vim-snippets'
+" Fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Puppet-related stuff
 Plug 'mv/mv-vim-puppet'
 " SilverSearcy plugin
@@ -30,6 +32,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 " Easy change of surrounding stuff (tags, quotes...)
 Plug 'tpope/vim-surround'
+" Hilight utf8-related trolls
+Plug 'vim-utils/vim-troll-stopper'
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -136,7 +140,17 @@ let g:airline#extensions#tabline#enabled = 1
 " CtrlP
 " Fix ctrl-p's mixed mode https://github.com/kien/ctrlp.vim/issues/556
 "let g:ctrlp_extensions = ['mixed']
-nnoremap <c-p> :CtrlPMixed<cr>
+"nnoremap <c-p> :CtrlPMixed<cr>
+
+" fzf
+nnoremap <c-p> :FZF<cr>
+let g:fzf_action = {
+  \ 'ctrl-m': 'e',
+  \ 'ctrl-t': 'tabedit',
+  \ 'alt-j':  'botright split',
+  \ 'alt-k':  'topleft split',
+  \ 'alt-h':  'vertical topleft split',
+  \ 'alt-l':  'vertical botright split' }
 
 " Syntastic
 " https://github.com/scrooloose/syntastic
@@ -147,7 +161,7 @@ nnoremap <c-p> :CtrlPMixed<cr>
 " Jump to the first error detected
 "let g:syntastic_auto_jump = 2
 "let g:syntastic_check_on_open = 0
-"let g:syntastic_puppet_puppetlint_quiet_messages = { "regex": "line has more than 80 characters" }
+let g:syntastic_puppet_puppetlint_quiet_messages = { "regex": "line has more than 80 characters" }
 "let g:syntastic_puppet_puppetlint_args = "--no-class_inherits_from_params_class-check"
 
 " Let's code with python 2
