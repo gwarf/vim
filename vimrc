@@ -161,7 +161,7 @@ let g:fzf_action = {
 " Jump to the first error detected
 "let g:syntastic_auto_jump = 2
 "let g:syntastic_check_on_open = 0
-let g:syntastic_puppet_puppetlint_quiet_messages = { "regex": "line has more than 80 characters" }
+"let g:syntastic_puppet_puppetlint_quiet_messages = { "regex": "line has more than 80 characters" }
 "let g:syntastic_puppet_puppetlint_args = "--no-class_inherits_from_params_class-check"
 
 " Let's code with python 2
