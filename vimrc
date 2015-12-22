@@ -101,8 +101,15 @@ set writebackup
 set swapfile
 set directory=$HOME/.vimswap
 
+" Keys
+
 " Use Ctrl-a to access begining of line in command mode
 cnoremap <c-a> <home>
+
+let mapleader=","
+
+" Use jk instead of ESC for leaving insert mode
+inoremap jk <ESC>
 
 """"""""""""""""""""""""""""""
 " *-(specific|related) options
