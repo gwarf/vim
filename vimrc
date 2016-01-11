@@ -12,6 +12,8 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'altercation/vim-colors-solarized'
 " Airline statusbar
 Plug 'bling/vim-airline'
+" CheckAttach
+Plug 'chrisbra/CheckAttach'
 " Ctrl-P for quick file/buffer access
 "Plug 'ctrlpvim/ctrlp.vim'
 " Tabular alignement
