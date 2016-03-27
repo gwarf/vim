@@ -23,7 +23,8 @@ Plug 'honza/vim-snippets'
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Preview registers
-Plug 'junegunn/vim-peekaboo'
+" Seems to break tabular and completion
+"Plug 'junegunn/vim-peekaboo'
 " Puppet-related stuff
 Plug 'mv/mv-vim-puppet'
 " SilverSearcy plugin
