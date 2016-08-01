@@ -33,6 +33,10 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'junegunn/vim-peekaboo'
 " Puppet-related stuff
 Plug 'mv/mv-vim-puppet'
+" Ansible support
+Plug 'pearofducks/ansible-vim'
+" Markdown support
+Plug 'plasticboy/vim-markdown'
 " SilverSearcy plugin
 Plug 'rking/ag.vim'
 " Syntax validation
@@ -45,6 +49,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 " Hilight utf8-related trolls
 Plug 'vim-utils/vim-troll-stopper'
+Plug 'Konfekt/FastFold'
 
 " All of your Plugins must be added before the following line
 call plug#end()
