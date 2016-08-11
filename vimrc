@@ -127,6 +127,14 @@ let mapleader=","
 " Use jk instead of ESC for leaving insert mode
 inoremap jk <ESC>
 
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Monaco\ 14
+  elseif has("gui_win32")
+    set guifont=Consolas:h11:cANSI
+  endif
+endif
+
 """"""""""""""""""""""""""""""
 " *-(specific|related) options
 """"""""""""""""""""""""""""""
