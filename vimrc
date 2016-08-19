@@ -129,7 +129,7 @@ inoremap jk <ESC>
 
 if has("gui_running")
   if has("gui_gtk2")
-    set guifont=Monaco\ 14
+    set guifont=Monaco\ 12
   elseif has("gui_win32")
     set guifont=Consolas:h11:cANSI
   endif
