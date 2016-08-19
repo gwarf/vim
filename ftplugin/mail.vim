@@ -16,6 +16,8 @@ set formatoptions=tcql
 set comments+=n:\|  " '|' is a quote char.
 set comments+=n:% " '%' as well.
 
+set omnifunc=mailcomplete#Complete
+
 " * <F1> to re-format the current paragraph correctly
 " * <F2> to format a line which is too long, and go to the next line
 " * <F3> to merge the previous line with the current one, with a correct
