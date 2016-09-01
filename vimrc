@@ -22,6 +22,17 @@ Plug 'bling/vim-airline'
 Plug 'chrisbra/CheckAttach'
 " Ctrl-P for quick file/buffer access
 "Plug 'ctrlpvim/ctrlp.vim'
+" Notes taking
+"Plug 'fmoralesc/vim-pad'
+Plug 'vimoutliner/vimoutliner'
+"Plug 'vim-pandoc/vim-pandoc'
+"Plug 'vim-pandoc/vim-pandoc-after'
+"Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-shell'
+" Plug 'jceb/vim-orgmode'
 " Tabular alignement
 Plug 'godlygeek/tabular'
 " Snippets for UltiSnipps
@@ -44,12 +55,19 @@ Plug 'scrooloose/syntastic'
 " git integration
 Plug 'tpope/vim-fugitive'
 " Sensible default settings
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-speeddating'
 " Easy change of surrounding stuff (tags, quotes...)
 Plug 'tpope/vim-surround'
 " Hilight utf8-related trolls
 Plug 'vim-utils/vim-troll-stopper'
+Plug 'vim-scripts/utl.vim'
+Plug 'vim-scripts/SyntaxRange'
+Plug 'vim-scripts/taglist.vim'
 Plug 'Konfekt/FastFold'
+Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'mattn/calendar-vim'
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -287,5 +305,15 @@ let g:UltiSnipsListSnippets="<c-e>"
 " and close the selection list, same as other IDEs.
 " CONFLICT with some plugins like tpope/Endwise
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Notes using vim-pad
+let g:pad#dir = "~/GoogleDrive/notes"
+"let g:pad#local_dir = "notes"
+
+" Notes using vim-notes
+let g:notes_directories = ["~/GoogleDrive/notes"]
+let g:notes_suffix = '.txt'
+"let g:notes_suffix = '.md'
+"let g:notes_smart_quotes = 0
 
 " vim:set ft=vim et sw=2:
