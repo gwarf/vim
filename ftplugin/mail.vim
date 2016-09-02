@@ -12,7 +12,8 @@
 "" ----------------------------------------------------------------------------
 
 set textwidth=72  " max line length
-set formatoptions=tcql
+"set formatoptions=tcql
+set fo=aw
 set comments+=n:\|  " '|' is a quote char.
 set comments+=n:% " '%' as well.
 
