@@ -16,7 +16,11 @@ call plug#begin('~/.vim/plugged')
 "Plug 'SirVer/ultisnips'
 " Completion
 "Plug 'Valloric/YouCompleteMe'
-Plug 'Shougo/neocomplete'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim'
+else
+  Plug 'Shougo/neocomplete'
+endif
 Plug 'Shougo/neosnippet'
 " Colorscheme
 Plug 'altercation/vim-colors-solarized'
@@ -318,7 +322,11 @@ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 "let g:SuperTabDefaultCompletionType = '<C-n>'
 
-let g:neocomplete#enable_at_startup = 1
+if has('nvim')
+  let g:deoplete#enable_at_startup = 1
+else
+  let g:neocomplete#enable_at_startup = 1
+endif
 
 " better key bindings for UltiSnipsExpandTrigger
 " let g:UltiSnipsExpandTrigger = "<tab>"
