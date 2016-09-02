@@ -25,7 +25,7 @@ Plug 'bling/vim-airline'
 " CheckAttach
 Plug 'chrisbra/CheckAttach'
 " Ctrl-P for quick file/buffer access
-"Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " Notes taking
 "Plug 'fmoralesc/vim-pad'
 Plug 'vimoutliner/vimoutliner'
@@ -192,8 +192,8 @@ let g:airline#extensions#tabline#enabled = 1
 
 " CtrlP
 " Fix ctrl-p's mixed mode https://github.com/kien/ctrlp.vim/issues/556
-"let g:ctrlp_extensions = ['mixed']
-"nnoremap <c-p> :CtrlPMixed<cr>
+let g:ctrlp_extensions = ['mixed']
+nnoremap <c-p> :CtrlPMixed<cr>
 
 " fzf
 nnoremap <c-p> :FZF<cr>
