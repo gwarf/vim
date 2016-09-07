@@ -21,9 +21,15 @@ if has('nvim')
 else
   Plug 'Shougo/neocomplete'
 endif
-Plug 'Shougo/neosnippet'
+" Theme
 " Colorscheme
-Plug 'altercation/vim-colors-solarized'
+if has('nvim')
+  Plug 'lifepillar/vim-solarized8'
+else
+  Plug 'altercation/vim-colors-solarized'
+endif
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 " Airline statusbar
 Plug 'bling/vim-airline'
 " CheckAttach
@@ -85,8 +91,12 @@ call plug#end()
 runtime plugin/sensible.vim
 
 " Theme
-set background=dark
-colorscheme solarized
+if has('nvim')
+  colorscheme solarized8_dark
+else
+  colorscheme solarized
+  set background=dark
+endif
 
 " Create new window below current one.
 set splitbelow
@@ -119,6 +129,8 @@ set hlsearch
 set expandtab
 set shiftwidth=2    " taille de l'indentation.
 set tabstop=2       " Taille des tabulations
+
+""set mouse=a
 
 " Highlight problematic whitespace
 set list
