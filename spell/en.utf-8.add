@@ -1,18 +1,14 @@
 mcollective
 LDAP
 gnubila
-ardoc
 DNS
 ldap
-Abidec
 VMs
 IPs
 debian
-eginseng
 pcsv
 VM
 linuxmint
-Sipath
 hiera
 Systray
 Modelines
@@ -29,7 +25,6 @@ VirtualBox
 nginx
 startssl
 abidec
-Username
 Liferay
 hieradata
 plugins
