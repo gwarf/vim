@@ -359,4 +359,8 @@ let g:notes_suffix = '.txt'
 "let g:notes_suffix = '.md'
 "let g:notes_smart_quotes = 0
 
+" Use ranger
+let g:checkattach_filebrowser = 'ranger'
+let g:checkattach_once = 'y'
+
 " vim:set ft=vim et sw=2:
