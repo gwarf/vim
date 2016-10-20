@@ -363,4 +363,10 @@ let g:notes_suffix = '.txt'
 let g:checkattach_filebrowser = 'ranger'
 let g:checkattach_once = 'y'
 
+" Fix arrow keys with 256 color term
+set t_ku=OA
+set t_kd=OB
+set t_kr=OC
+set t_kl=OD
+
 " vim:set ft=vim et sw=2:
