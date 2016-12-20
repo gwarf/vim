@@ -62,6 +62,8 @@ Plug 'mv/mv-vim-puppet'
 Plug 'pearofducks/ansible-vim'
 " Markdown support
 Plug 'plasticboy/vim-markdown'
+"Plug 'tpope/vim-markdown'
+"Plug 'gabrielelana/vim-markdown'
 " SilverSearcy plugin
 Plug 'rking/ag.vim'
 " Syntax validation
