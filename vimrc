@@ -85,6 +85,7 @@ Plug 'vim-scripts/taglist.vim'
 Plug 'Konfekt/FastFold'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'mattn/calendar-vim'
+Plug 'PotatoesMaster/i3-vim-syntax'
 
 " All of your Plugins must be added before the following line
 call plug#end()
