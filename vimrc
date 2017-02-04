@@ -36,6 +36,7 @@ Plug 'bling/vim-airline'
 Plug 'chrisbra/CheckAttach'
 " Ctrl-P for quick file/buffer access
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'editorconfig/editorconfig-vim'
 " Notes taking
 "Plug 'fmoralesc/vim-pad'
 Plug 'vimoutliner/vimoutliner'
@@ -72,7 +73,9 @@ Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 " Sensible default settings
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sensible'
+if !has('nvim')
+  Plug 'tpope/vim-sensible'
+endif
 Plug 'tpope/vim-speeddating'
 " Easy change of surrounding stuff (tags, quotes...)
 Plug 'tpope/vim-surround'
@@ -86,12 +89,15 @@ Plug 'Konfekt/FastFold'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'mattn/calendar-vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'vimperator/vimperator.vim'
 
 " All of your Plugins must be added before the following line
 call plug#end()
 
-" Required to allow to override sensible.vim configuration
-runtime plugin/sensible.vim
+if !has('nvim')
+  " Required to allow to override sensible.vim configuration
+  runtime plugin/sensible.vim
+endif
 
 " Theme
 if has('nvim')
@@ -365,6 +371,10 @@ let g:notes_suffix = '.txt'
 " Use ranger
 let g:checkattach_filebrowser = 'ranger'
 let g:checkattach_once = 'y'
+
+" Said required to fix editorconfig with Fugitive
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
 
 " Fix arrow keys with 256 color term
 set t_ku=OA
