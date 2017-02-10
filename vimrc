@@ -139,8 +139,8 @@ set expandtab
 set shiftwidth=2    " taille de l'indentation.
 set tabstop=2       " Taille des tabulations
 
-set mouse-=a
-set mouse=
+"set mouse-=a
+"set mouse=
 
 " Highlight problematic whitespace
 set list
