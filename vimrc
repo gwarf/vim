@@ -38,7 +38,7 @@ Plug 'chrisbra/CheckAttach'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 " Notes taking
-"Plug 'fmoralesc/vim-pad'
+" Plug 'fmoralesc/vim-pad'
 Plug 'vimoutliner/vimoutliner'
 "Plug 'vim-pandoc/vim-pandoc'
 "Plug 'vim-pandoc/vim-pandoc-after'
@@ -90,6 +90,8 @@ Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'mattn/calendar-vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'vimperator/vimperator.vim'
+Plug 'vimwiki/vimwiki'
+Plug 'fmoralesc/vim-tutor-mode'
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -169,7 +171,8 @@ set directory=$HOME/.vimswap
 " Keys
 
 " Use Ctrl-a to access begining of line in command mode
-cnoremap <c-a> <home>
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
 
 let mapleader=","
 
@@ -381,5 +384,14 @@ set t_ku=OA
 set t_kd=OB
 set t_kr=OC
 set t_kl=OD
+
+" Some useful abreviations
+
+:iab brb Best regards,<enter>Baptiste
+:iab cb Cheers,<enter>Baptiste
+
+" vimWiki
+" No folder suppor, 'path_html': '~/public_html/'t
+"let g:vimwiki_list = [{'path': '~/GoogleDrive/wiki/'}]
 
 " vim:set ft=vim et sw=2:
