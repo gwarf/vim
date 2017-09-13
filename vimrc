@@ -84,6 +84,8 @@ Plug 'vim-utils/vim-troll-stopper'
 Plug 'vim-scripts/utl.vim'
 Plug 'vim-scripts/SyntaxRange'
 Plug 'vim-scripts/taglist.vim'
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
 "Plug 'vim-scripts/AutoClose'
 Plug 'Konfekt/FastFold'
 Plug 'maxbrunsfeld/vim-yankstack'
@@ -92,6 +94,8 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'vimperator/vimperator.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'fmoralesc/vim-tutor-mode'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'mrtazz/simplenote.vim'
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -113,7 +117,7 @@ endif
 set splitbelow
 
 " Show line number
-set number
+set number relativenumber
 
 " draw a vertical line
 if v:version >= 703
@@ -378,12 +382,19 @@ let g:checkattach_once = 'y'
 " Said required to fix editorconfig with Fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
+source ~/.simplenoterc
 
 " Fix arrow keys with 256 color term
 set t_ku=OA
 set t_kd=OB
 set t_kr=OC
 set t_kl=OD
+
+" Use hjkl-movement between rows when soft wrapping
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 
 " Some useful abreviations
 
