@@ -1,5 +1,8 @@
 " ~/.vimrc
+" XXX Move to dein to replace vim-plug?
+" https://github.com/Shougo/dein.vim
 "
+" https://github.com/junegunn/vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -17,9 +20,12 @@ call plug#begin('~/.vim/plugged')
 " Completion
 "Plug 'Valloric/YouCompleteMe'
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/denite.nvim'
 else
-  Plug 'Shougo/neocomplete'
+  Plug 'Shougo/deocomplete'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
 " Theme
 " Colorscheme
@@ -28,10 +34,12 @@ if has('nvim')
 else
   Plug 'altercation/vim-colors-solarized'
 endif
+" Plug 'rakr/vim-one'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 " Airline statusbar
 Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " CheckAttach
 Plug 'chrisbra/CheckAttach'
 " Ctrl-P for quick file/buffer access
@@ -44,7 +52,8 @@ Plug 'vimoutliner/vimoutliner'
 "Plug 'vim-pandoc/vim-pandoc-after'
 "Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'xolox/vim-notes'
+" XXX disabled, evaluating to vimwiki
+" Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-shell'
 " Plug 'jceb/vim-orgmode'
@@ -62,7 +71,10 @@ Plug 'mv/mv-vim-puppet'
 " Ansible support
 Plug 'pearofducks/ansible-vim'
 " Markdown support
+" Should come after tabular
 Plug 'plasticboy/vim-markdown'
+" Instant markdown preview
+" Plug 'suan/vim-instant-markdown'
 "Plug 'tpope/vim-markdown'
 "Plug 'gabrielelana/vim-markdown'
 " SilverSearcy plugin
@@ -71,6 +83,9 @@ Plug 'rking/ag.vim'
 Plug 'scrooloose/syntastic'
 " git integration
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+" gitk for Vim.
+Plug 'gregsexton/gitv', {'on': ['Gitv']}
 " Sensible default settings
 Plug 'tpope/vim-repeat'
 if !has('nvim')
@@ -79,6 +94,7 @@ endif
 Plug 'tpope/vim-speeddating'
 " Easy change of surrounding stuff (tags, quotes...)
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 " Hilight utf8-related trolls
 Plug 'vim-utils/vim-troll-stopper'
 Plug 'vim-scripts/utl.vim'
@@ -87,15 +103,30 @@ Plug 'vim-scripts/taglist.vim'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'
 "Plug 'vim-scripts/AutoClose'
+Plug 'vim-scripts/spec.vim'
 Plug 'Konfekt/FastFold'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'mattn/calendar-vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'vimperator/vimperator.vim'
 Plug 'vimwiki/vimwiki'
+Plug 'teranex/vimwiki-tasks'
 Plug 'fmoralesc/vim-tutor-mode'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'mrtazz/simplenote.vim'
+Plug 'w0rp/ale'
+Plug 'dag/vim-fish'
+Plug 'neomutt/neomutt.vim'
+Plug 'blindFS/vim-taskwarrior'
+Plug 'reedes/vim-litecorrect'
+Plug 'mbbill/undotree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdtree'
+" Display available commands
+" https://github.com/hecal3/vim-leader-guide
+Plug 'hecal3/vim-leader-guide'
+" Buffers list in the command bar
+Plug 'bling/vim-bufferline'
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -106,11 +137,41 @@ if !has('nvim')
 endif
 
 " Theme
+
+" Pyenv with neovim on Mac OS X
+" https://github.com/tweekmonster/nvim-python-doctor/wiki/Advanced:-Using-pyenv
+let g:python_host_prog = '/Users/baptistegrenier/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/baptistegrenier/.pyenv/versions/neovim3/bin/python'
+
+"Credit joshdick
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+" if (empty($TMUX))
+"   if (has("nvim"))
+"   "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+"   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+"   endif
+"   "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"   "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+"   " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+"   if (has("termguicolors"))
+"     set termguicolors
+"   endif
+" endif
+
+set background=dark
 if has('nvim')
-  colorscheme solarized8_dark
+  " Use true colors
+  " https://www.cyfyifanchen.com/neovim-true-color/
+  " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  " set termguicolors
+  let g:solarized_use16 = 1
+  "colorscheme solarized8_dark
+  colorscheme solarized8_flat
+  " colorscheme one
 else
   colorscheme solarized
-  set background=dark
 endif
 
 " Create new window below current one.
@@ -172,13 +233,21 @@ set writebackup
 set swapfile
 set directory=$HOME/.vimswap
 
+" Test Leader key customization
+" let mapleader=","
+let mapleader=" "
+map <Space> <Leader>
+nnoremap <Leader>x i
+set showcmd
+
 " Keys
+
+" Use :w!! to write to a read only file by calling sudo
+cmap w!! %!sudo tee > /dev/null %
 
 " Use Ctrl-a to access begining of line in command mode
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
-
-let mapleader=","
 
 " Use jk instead of ESC for leaving insert mode
 inoremap jk <ESC>
@@ -197,7 +266,6 @@ endif
 
 " Mail edition for mutt
 " :help fo-table
-" autocmd BufEnter /tmp/mutt* so ~/.vim/mutt.colors
 autocmd BufEnter,BufNewFile,BufRead ~/tmp/mutt* set spell spelllang=en,fr complete+=kspell noci ft=mail et fo=tcqnaw
 
 """"""""""""""""""
@@ -219,6 +287,7 @@ autocmd BufReadPost * silent! call s:CursorOldPosition()
 """""""""""""""""""""""
 
 " vim-airline
+let g:airline_theme='ravenpower'
 let g:airline_powerline_fonts = 1
 let g:airline_line_fonts = 1
 " Automatically displays all buffers when there's only one tab open
@@ -242,12 +311,12 @@ let g:fzf_action = {
 " Syntastic
 " https://github.com/scrooloose/syntastic
 " Always populate location list with errors
-"let g:syntastic_always_populate_loc_list = 1
-" Automatically close error window
-"let g:syntastic_auto_loc_list = 2
+let g:syntastic_always_populate_loc_list = 1
+" Automatically close error window when no errors are left
+let g:syntastic_auto_loc_list = 1
 " Jump to the first error detected
-"let g:syntastic_auto_jump = 2
-"let g:syntastic_check_on_open = 0
+let g:syntastic_auto_jump = 1
+let g:syntastic_check_on_open = 1
 "let g:syntastic_puppet_puppetlint_quiet_messages = { "regex": "line has more than 80 characters" }
 "let g:syntastic_puppet_puppetlint_args = "--no-class_inherits_from_params_class-check"
 
@@ -258,7 +327,7 @@ let g:fzf_action = {
 " https://github.com/liamcurry/py3kwarn
 " https://docs.python.org/3/whatsnew/3.0.html
 " https://docs.python.org/2.6/library/2to3.html#fixers
-"let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_checkers=['flake8']
 "let g:syntastic_python_checkers=['flake8', 'py3kwarn']
 
 " The Silver Searcher
@@ -351,11 +420,8 @@ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 "let g:SuperTabDefaultCompletionType = '<C-n>'
 
-if has('nvim')
-  let g:deoplete#enable_at_startup = 1
-else
-  let g:neocomplete#enable_at_startup = 1
-endif
+" Use deoplete
+let g:deoplete#enable_at_startup = 1
 
 " better key bindings for UltiSnipsExpandTrigger
 " let g:UltiSnipsExpandTrigger = "<tab>"
@@ -370,10 +436,18 @@ let g:pad#dir = "~/GoogleDrive/notes"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Notes using vim-notes
+" https://peterodding.com/code/vim/notes
 let g:notes_directories = ["~/GoogleDrive/notes"]
 let g:notes_suffix = '.txt'
 "let g:notes_suffix = '.md'
-"let g:notes_smart_quotes = 0
+" Disabling text substitutions (Like quotes)
+let g:notes_smart_quotes = 0
+" Disabling unicode characters for bullets, arrows..)
+" let g:notes_unicode_enabled = 0
+" Do not hide code block marks
+let g:notes_conceal_code = 0
+" Do not hide URL schemes
+let g:notes_conceal_url = 0
 
 " Use ranger
 let g:checkattach_filebrowser = 'ranger'
@@ -381,6 +455,9 @@ let g:checkattach_once = 'y'
 
 " Said required to fix editorconfig with Fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+" Vertical diff
+set diffopt+=vertical
 
 source ~/.simplenoterc
 
@@ -401,8 +478,64 @@ vnoremap k gk
 :iab brb Best regards,<enter>Baptiste
 :iab cb Cheers,<enter>Baptiste
 
-" vimWiki
-" No folder suppor, 'path_html': '~/public_html/'t
-"let g:vimwiki_list = [{'path': '~/GoogleDrive/wiki/'}]
+" https://github.com/tpope/vim-sensible/pull/127
+let g:is_posix=1
+
+" vim-taskwarrior
+nnoremap <leader>t :tabnew <bar> :TW<CR>
+
+" Autocorrect in text and markdown files
+
+augroup litecorrect
+  autocmd!
+  autocmd FileType markdown,mkd call litecorrect#init()
+  autocmd FileType textile call litecorrect#init()
+augroup END
+" Force the top-ranked correction on the first misspelled word before the
+" cursor.
+nnoremap <C-s> [s1z=<c-o>
+inoremap <C-s> <c-g>u<Esc>[s1z=`]A<c-g>u
+
+" VimWiKi
+" https://github.com/vimwiki/vimwiki/issues/95
+" Do not use vimwiki type globally on all .md files
+let g:vimwiki_global_ext = 0
+let g:vimwiki_folding = ''
+" Do not conceal links
+let g:vimwiki_url_maxsave = 0
+
+" <Leader>wt to start
+" <Leader>ww to start
+" ~/GoogleDrive/wiki/: work
+" ~/wiki/: perso/home
+let wiki_work = {}
+let wiki_work.path = '~/wiki_work/'
+let wiki_work.syntax = 'markdown'
+let wiki_work.index = 'README'
+let wiki_work.ext = '.md'
+
+let wiki_home = {}
+let wiki_home.path = '~/repos/wiki/'
+let wiki_home.syntax = 'markdown'
+let wiki_home.index = 'README'
+let wiki_home.ext = '.md'
+
+let g:vimwiki_list = [wiki_work, wiki_home]
+
+" Keep using TAb for completion
+:nmap <Leader>wn <Plug>VimwikiNextLink
+:nmap <Leader>wp <Plug>VimwikiPrevLink
+
+" Toggle undotree panel
+nnoremap <F5> :UndotreeToggle<cr>
+if has("persistent_undo")
+  set undodir=~/.undodir/
+  set undofile
+endif
+
+" vim-markdown
+" Disable folding
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_new_list_item_indent = 2
 
 " vim:set ft=vim et sw=2:
