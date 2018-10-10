@@ -1,10 +1,11 @@
-vim
-===
+# vim
+
+Deprecated, merged to my [main messy dotfiles repository](https://github.com/gwarf/dotfiles)
 
 vim configuration.
 
-Usage
-=====
+## Usage
+
 ```
 git clone git@github.com:gwarf/vim.git ~/.vim
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
